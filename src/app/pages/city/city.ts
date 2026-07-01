@@ -6,6 +6,6 @@ import { LightHouse } from "../../layout/shared-components/light-house/light-hou
   selector: 'app-city',
   imports: [Contacts, LightHouse],
   templateUrl: './city.html',
-  styleUrl: './city.scss',
+  styleUrls: ['./city.scss'],
 })
 export class City {}

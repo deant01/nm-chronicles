@@ -4,6 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-prequal',
   imports: [],
   templateUrl: './prequal.html',
-  styleUrl: './prequal.scss',
+  styleUrls: ['./prequal.scss'],
 })
 export class Prequal {}

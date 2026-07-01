@@ -4,6 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-light-house',
   imports: [],
   templateUrl: './light-house.html',
-  styleUrl: './light-house.scss',
+  styleUrls: ['./light-house.scss'],
 })
 export class LightHouse {}

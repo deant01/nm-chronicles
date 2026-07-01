@@ -4,6 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-quotations',
   imports: [],
   templateUrl: './quotations.html',
-  styleUrl: './quotations.scss',
+  styleUrls: ['./quotations.scss'],
 })
 export class Quotations {}

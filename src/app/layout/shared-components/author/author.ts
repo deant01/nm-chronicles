@@ -4,6 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-author',
   imports: [],
   templateUrl: './author.html',
-  styleUrl: './author.scss',
+  styleUrls: ['./author.scss'],
 })
 export class Author {}

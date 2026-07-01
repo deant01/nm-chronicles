@@ -8,7 +8,7 @@ import { LightHouse } from "./layout/shared-components/light-house/light-house";
   selector: 'app-root',
   imports: [RouterOutlet, Header, Footer, LightHouse],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrls: ['./app.scss']
 })
 export class App {
   protected readonly title = signal('nm-chronicles');

@@ -22,6 +22,6 @@ import { Quotations } from '../../layout/shared-components/quotations/quotations
     Contacts,
   ],
   templateUrl: './home.html',
-  styleUrl: './home.scss',
+  styleUrls: ['./home.scss'],
 })
 export class Home {}

@@ -7,7 +7,7 @@ import { filter, map, startWith } from 'rxjs';
   selector: 'app-header',
   imports: [RouterLink],
   templateUrl: './header.html',
-  styleUrl: './header.scss',
+  styleUrls: ['./header.scss'],
 })
 export class Header {
   private router = inject(Router);

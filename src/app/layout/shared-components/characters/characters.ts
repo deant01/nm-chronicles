@@ -4,6 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-characters',
   imports: [],
   templateUrl: './characters.html',
-  styleUrl: './characters.scss',
+  styleUrls: ['./characters.scss'],
 })
 export class Characters {}
