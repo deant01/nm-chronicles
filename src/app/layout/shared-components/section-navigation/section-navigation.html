@@ -1,0 +1,11 @@
+<div class="section-navigation">
+    <button type="button" class="nav-button prev" title="{{ previousSection()?.label }}"
+        [disabled]="!canScrollPrevious()" (click)="scrollToPrevious()"></button>
+
+    <div class="section-indicator">
+        <span title="{{ currentLabel() }}"></span>
+    </div>
+
+    <button type="button" class="nav-button next" title="{{ nextSection()?.label }}" [disabled]="!canScrollNext()"
+        (click)="scrollToNext()"></button>
+</div>
