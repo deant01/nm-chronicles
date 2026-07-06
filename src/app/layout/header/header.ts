@@ -1,6 +1,8 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, effect, inject, Signal, signal, WritableSignal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterLink } from "@angular/router";
+import { ScrollService } from '../../services/scroll.service';
+import { ViewChangeService } from '../../services/view-change.service';
 import { filter, map, startWith } from 'rxjs';
 
 @Component({
@@ -11,7 +13,10 @@ import { filter, map, startWith } from 'rxjs';
 })
 export class Header {
   private router = inject(Router);
-  isHome = computed(() => this.currentUrl() === '/');
+  private scrollService = inject(ScrollService);
+  private viewChangeService = inject(ViewChangeService);
+  isHome: Signal<boolean> = computed(() => this.currentUrl() === '/');
+  menuOpen: WritableSignal<boolean> = signal(false);
 
   private currentUrl = toSignal(
     this.router.events.pipe(
@@ -21,7 +26,29 @@ export class Header {
     )
   );
 
+  constructor() {
+    effect(() => {
+      if (this.viewChangeService.isDesktop()) {
+        this.closeMenu();
+      }
+    });
+
+    effect(() => {
+      this.currentUrl();
+      this.closeMenu();
+    });
+  }
+
+  toggleMenu(): void {
+    this.menuOpen.update(open => !open);
+  }
+
+  closeMenu(): void {
+    this.menuOpen.set(false);
+  }
+
   scrollTo(id: string): void {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    this.scrollService.scrollTo(id);
+    this.closeMenu();
   }
 }
