@@ -33,7 +33,7 @@ export interface CharacterDTO {
   revealOnHover?: boolean;
 }
 
-const CHARACTER_DATA_URL = '/assets/data/characters.json'; 
+const CHARACTER_DATA_URL = '/nm-chronicles/assets/data/characters.json'; 
 //const CHARACTER_DATA_URL = 'nm-archives/assets/data/characters.json'; //Github Pages workaround for 404 error when fetching character data
 
 @Injectable({
