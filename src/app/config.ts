@@ -56,7 +56,7 @@ export const APP_ENVIRONMENT_CONFIG = new InjectionToken<AppEnvironmentConfig>('
     const isLocal = host.startsWith('localhost') || host.startsWith('127.0.0.1');
     const isGithubPages = pathname.startsWith('/nm-chronicles/') || host.includes('github.io');
     const isProduction = host.endsWith('newportmaeve.com');
-    console.log(isLocal, isGithubPages, isProduction, host, pathname);
+
     if (isLocal) {
       return {
         environment: 'local',
