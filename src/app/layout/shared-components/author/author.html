@@ -1,13 +1,13 @@
 <section id="author" class="author-section">
   <div class="author-grid">
     <div class="about-img-wrap">
-      <img class="desktop-image" src="/nm-chronicles/assets/images/architect.webp" [alt]="content.imageAlt">
+      <img class="desktop-image" [src]="authorImageSrc" [alt]="content.imageAlt">
     </div>
     <div class="author-text">
       <p class="section-label">{{ content.label }}</p>
       <h2 class="section-title">{{ content.title }}</h2>
       <div class="divider"></div>
-      <img class="mobile-image" src="/nm-chronicles/assets/images/architect.webp" [alt]="content.imageAlt">
+      <img class="mobile-image" [src]="authorImageSrc" [alt]="content.imageAlt">
       <p>{{ content.description }}</p>
     </div>
   </div>

@@ -1,4 +1,5 @@
-import { Injectable, Service } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { APP_ENVIRONMENT_CONFIG, buildAssetUrl } from '../config';
 
 export interface CharacterImageSet {
   src: string;
@@ -33,13 +34,14 @@ export interface CharacterDTO {
   revealOnHover?: boolean;
 }
 
-const CHARACTER_DATA_URL = '/nm-chronicles/assets/data/characters.json'; 
-//const CHARACTER_DATA_URL = 'nm-archives/assets/data/characters.json'; //Github Pages workaround for 404 error when fetching character data
+const CHARACTER_DATA_FILE = 'assets/data/characters.json';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CharacterDataService {
+  private readonly envConfig = inject(APP_ENVIRONMENT_CONFIG);
+  private readonly characterDataUrl = buildAssetUrl(this.envConfig.assetBasePath, CHARACTER_DATA_FILE);
   private cache: CharacterDTO[] | null = null;
 
   async getCharacters(): Promise<CharacterDTO[] | []> {
@@ -47,7 +49,7 @@ export class CharacterDataService {
       return this.cache;
     }
 
-    const response = await fetch(CHARACTER_DATA_URL);
+    const response = await fetch(this.characterDataUrl);
     if (!response.ok) {
       throw new Error(`Failed to load character data: ${response.statusText}`);
     }

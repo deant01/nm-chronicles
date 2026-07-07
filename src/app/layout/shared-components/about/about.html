@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="about-img-wrap">
-      <img [src]="content.image.src" [alt]="content.image.alt">
+      <img [src]="assetUrl(content.image?.src || '')" [alt]="content.image?.alt || ''">
     </div>
   </div>
 </section>

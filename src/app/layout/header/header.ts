@@ -15,7 +15,7 @@ export class Header {
   private router = inject(Router);
   private scrollService = inject(ScrollService);
   private viewChangeService = inject(ViewChangeService);
-  isHome: Signal<boolean> = computed(() => this.currentUrl() === '/');
+  isPage: Signal<boolean> = computed(() => (this.currentUrl()?.includes('city') || this.currentUrl()?.includes('character')) ?? false);
   menuOpen: WritableSignal<boolean> = signal(false);
 
   private currentUrl = toSignal(

@@ -1,9 +1,9 @@
 <header>
     <nav>
-        @if (isHome()) {
-        <button (click)="scrollTo('main')" class="nav-logo">NM Chronicles</button>
+        @if (isPage()) {
+            <a routerLink="['/']" class="nav-logo">NM Chronicles</a>
         } @else {
-        <a routerLink="['/']" class="nav-logo">NM Chronicles</a>
+            <button (click)="scrollTo('main')" class="nav-logo">NM Chronicles</button>
         }
 
         <button
@@ -19,30 +19,30 @@
         </button>
 
         <ul class="nav-links">
-            @if (isHome()) {
-            <li><button type="button" (click)="scrollTo('about')">About</button></li>
-            <li><button type="button" (click)="scrollTo('listen')">Listen</button></li>
-            <li><button type="button" (click)="scrollTo('characters')">Characters</button></li>
-            <li><button type="button" (click)="scrollTo('map')">The City</button></li>
-            <li><button type="button" (click)="scrollTo('author')">Author</button></li>
-            <li><button type="button" (click)="scrollTo('connect')">Connect</button></li>
+            @if (isPage()) {
+                <a [routerLink]="['/']" class="nav-back" (click)="closeMenu()">← Back to Home</a>
             } @else {
-            <a [routerLink]="['/']" class="nav-back" (click)="closeMenu()">← Back to Home</a>
-            }
-        </ul>
-
-        @if (menuOpen()) {
-        <div class="mobile-menu">
-            <ul>
-                @if (isHome()) {
                 <li><button type="button" (click)="scrollTo('about')">About</button></li>
                 <li><button type="button" (click)="scrollTo('listen')">Listen</button></li>
                 <li><button type="button" (click)="scrollTo('characters')">Characters</button></li>
                 <li><button type="button" (click)="scrollTo('map')">The City</button></li>
                 <li><button type="button" (click)="scrollTo('author')">Author</button></li>
                 <li><button type="button" (click)="scrollTo('connect')">Connect</button></li>
+            }
+        </ul>
+
+        @if (menuOpen()) {
+        <div class="mobile-menu">
+            <ul>
+                @if (isPage()) {
+                    <li><a [routerLink]="['/']" (click)="closeMenu()">← Back to Home</a></li>
                 } @else {
-                <li><a [routerLink]="['/']" (click)="closeMenu()">← Back to Home</a></li>
+                    <li><button type="button" (click)="scrollTo('about')">About</button></li>
+                    <li><button type="button" (click)="scrollTo('listen')">Listen</button></li>
+                    <li><button type="button" (click)="scrollTo('characters')">Characters</button></li>
+                    <li><button type="button" (click)="scrollTo('map')">The City</button></li>
+                    <li><button type="button" (click)="scrollTo('author')">Author</button></li>
+                    <li><button type="button" (click)="scrollTo('connect')">Connect</button></li>
                 }
             </ul>
         </div>

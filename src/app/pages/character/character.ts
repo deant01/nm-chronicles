@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CharacterDataService, CharacterDTO } from '../../services/character-data.service';
 import { Contacts } from '../../layout/shared-components/contacts/contacts';
 import { LightHouse } from '../../layout/shared-components/light-house/light-house';
+import { APP_ENVIRONMENT_CONFIG, buildAssetUrl } from '../../config';
 
 @Component({
   selector: 'app-character',
@@ -14,7 +15,8 @@ export class Character {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private characterDataService = inject(CharacterDataService);
-
+  private readonly envConfig = inject(APP_ENVIRONMENT_CONFIG);
+  assetUrl = (path: string) => buildAssetUrl(this.envConfig.assetBasePath, path);
   character = signal<CharacterDTO | null>(null);
   loading = signal(true);
   error = signal<string | null>(null);

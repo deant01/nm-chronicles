@@ -7,11 +7,11 @@ import { provideClientHydration } from '@angular/platform-browser';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-     provideRouter(
+    provideRouter(
       routes,
       withInMemoryScrolling({
+        scrollPositionRestoration: 'top',
         anchorScrolling: 'enabled',
-        scrollPositionRestoration: 'enabled'
       })
     ), provideClientHydration()
   ]
