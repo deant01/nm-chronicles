@@ -41,14 +41,16 @@
   transition: background 0.3s;
 }
 
-.link-card:hover {
-  border-color: var(--gold-dim);
-  transform: translateY(-2px);
-  background: #120E0A;
-}
+@media (hover: hover) {
+  .link-card:hover {
+    border-color: var(--gold-dim);
+    transform: translateY(-2px);
+    background: #120E0A;
+  }
 
-.link-card:hover::before {
-  background: var(--gold);
+  .link-card:hover::before {
+    background: var(--gold);
+  }
 }
 
 .link-icon {
@@ -66,8 +68,10 @@
   transition: color 0.3s;
 }
 
-.link-card:hover .link-label {
-  color: var(--gold);
+@media (hover: hover) {
+  .link-card:hover .link-label {
+    color: var(--gold);
+  }
 }
 
 .link-desc {

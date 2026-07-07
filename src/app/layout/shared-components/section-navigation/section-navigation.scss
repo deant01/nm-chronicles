@@ -13,10 +13,12 @@
     max-width: fit-content;
     background: transparent;
 
-    &:hover {
+    @media (hover: hover) {
+      &:hover {
         .section-indicator span {
-            background: var(--gold-light);
+          background: var(--gold-light);
         }
+      }
     }
 }
 
@@ -54,10 +56,12 @@
 
 }
 
-.nav-button:hover:not(:disabled) {
+@media (hover: hover) {
+  .nav-button:hover:not(:disabled) {
     color: var(--gold-light);
     border-color: rgba(255, 255, 255, 0.28);
     transform: translateY(-1px);
+  }
 }
 
 .nav-button:disabled {

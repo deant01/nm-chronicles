@@ -24,8 +24,10 @@
   cursor: pointer;
 }
 
-.map-container:hover img {
-  transform: scale(1.02);
+.@media (hover: hover) {
+  .map-container:hover img {
+    transform: scale(1.02);
+  }
 }
 
 .map-caption {

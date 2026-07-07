@@ -39,8 +39,10 @@ nav {
   transition: color 0.3s;
 }
 
-.nav-links a:hover {
-  color: var(--gold-light);
+@media (hover: hover) {
+  .nav-links a:hover {
+    color: var(--gold-light);
+  }
 }
 
 .mobile-menu {
@@ -115,8 +117,10 @@ nav {
     cursor: pointer;
   }
 
-  .mobile-menu li button:hover,
-  .mobile-menu li a:hover {
-    color: var(--gold-light);
+  @media (hover: hover) {
+    .mobile-menu li button:hover,
+    .mobile-menu li a:hover {
+      color: var(--gold-light);
+    }
   }
 }

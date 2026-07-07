@@ -223,9 +223,11 @@ section {
   transition: color 0.3s;
 }
 
-.sheet-nav .nav-back:hover,
-.city-nav .nav-back:hover {
-  color: var(--gold-light);
+@media (hover: hover) {
+  .sheet-nav .nav-back:hover,
+  .city-nav .nav-back:hover {
+    color: var(--gold-light);
+  }
 }
 
 .sheet-hero,

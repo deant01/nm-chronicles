@@ -91,9 +91,11 @@
   clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
 }
 
-.hero-cta:hover {
-  background: var(--gold-light);
-  transform: translateY(-2px);
+@media (hover: hover) {
+  .hero-cta:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+  }
 }
 
 .scroll-hint {

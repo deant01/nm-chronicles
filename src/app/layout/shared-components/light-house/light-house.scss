@@ -49,9 +49,11 @@
   line-height: 1;
 }
 
-.lightbox-close:hover {
-  background: var(--gold);
-  color: var(--bg-deep);
+@media (hover: hover) {
+  .lightbox-close:hover {
+    background: var(--gold);
+    color: var(--bg-deep);
+  }
 }
 
 .lightbox-hint {
