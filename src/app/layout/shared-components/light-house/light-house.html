@@ -1,5 +1,7 @@
-<div class="lightbox" id="lightbox" aria-hidden="true">
-  <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
-  <img id="lightboxImg" src="" alt="">
+<div class="lightbox" [class.open]="isOpen()" [attr.aria-hidden]="!isOpen()" role="dialog" aria-modal="true" (click)="close()">
+  <button class="lightbox-close" type="button" aria-label="Close" (click)="close($event)">&times;</button>
+  @if (isOpen()) {
+    <img [src]="src()" [alt]="alt() || 'Image preview'" (click)="$event.stopPropagation()">
+  }
   <span class="lightbox-hint">Click outside or &times; to close</span>
 </div>

@@ -2,18 +2,19 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CharacterDataService, CharacterDTO } from '../../services/character-data.service';
 import { Contacts } from '../../layout/shared-components/contacts/contacts';
-import { LightHouse } from '../../layout/shared-components/light-house/light-house';
 import { Loader } from '../../layout/shared-components/loader/loader';
 import { LoaderService } from '../../services/loader.service';
+import { LightHouseService } from '../../layout/shared-components/light-house/light-house.service';
 import { APP_ENVIRONMENT_CONFIG, buildAssetUrl } from '../../config';
 
 @Component({
   selector: 'app-character',
-  imports: [Contacts, LightHouse, Loader],
+  imports: [Contacts, Loader],
   templateUrl: './character.html',
   styleUrls: ['./character.scss'],
 })
 export class Character {
+  private readonly lightHouseService = inject(LightHouseService);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private characterDataService = inject(CharacterDataService);
@@ -30,6 +31,11 @@ export class Character {
 
   constructor() {
     this.loadCharacter();
+  }
+
+  openLightbox(src: string, alt = ''): void {
+    console.log(`Character: openLightbox() called `);
+    this.lightHouseService.show(src, alt);
   }
 
   private async loadCharacter(): Promise<void> {

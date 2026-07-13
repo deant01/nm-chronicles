@@ -19,4 +19,14 @@ describe('LightHouse', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should open and close the lightbox', () => {
+    component.open('assets/test-image.png', 'Test image');
+    expect(component.lightboxOpen()).toBe(true);
+    expect(component.lightboxSrc()).toBe('assets/test-image.png');
+    expect(component.lightboxAlt()).toBe('Test image');
+
+    component.close();
+    expect(component.lightboxOpen()).toBe(false);
+  });
 });

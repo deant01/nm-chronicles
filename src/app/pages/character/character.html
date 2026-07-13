@@ -25,46 +25,47 @@
     <h2>Profile</h2>
     <div class="profile-row">
       <div class="profile-key">Name</div>
-      <div class="profile-val">Miroslav Dion</div>
+      <div class="profile-val">{{ character()?.name }}</div>
     </div>
     <div class="profile-row">
       <div class="profile-key">Race</div>
-      <div class="profile-val">Vampire (Blood Blessed Human)</div>
+      <div class="profile-val">{{ character()?.race }}</div>
     </div>
     <div class="profile-row">
       <div class="profile-key">Abilities</div>
       <div class="profile-val">
         <ul>
-          <li>Undetermined Lifespan</li>
-          <li>Preternatural strength and speed</li>
-          <li>Regeneration</li>
-          <li>Extensive mind and matter control over other BloodBlessed</li>
+          @for (ability of character()?.abilities ?? [];
+            track character()?.abilities?.indexOf(ability)) {
+          <li>{{ ability }}</li>
+          }
         </ul>
       </div>
     </div>
     <div class="profile-row">
       <div class="profile-key">Role</div>
-      <div class="profile-val">First of the Blood Blessed</div>
+      <div class="profile-val">{{ character()?.role }}</div>
     </div>
     <div class="profile-row">
       <div class="profile-key">Age</div>
-      <div class="profile-val">Appears 40, but much older</div>
+      <div class="profile-val">{{ character()?.age }}</div>
     </div>
     <div class="profile-row">
       <div class="profile-key">Hair</div>
-      <div class="profile-val">Dark with silver at temples</div>
+      <div class="profile-val">{{ character()?.appearance?.hair }}</div>
     </div>
     <div class="profile-row">
       <div class="profile-key">Eyes</div>
-      <div class="profile-val">Crimson Red</div>
+      <div class="profile-val">{{ character()?.appearance?.eyes }}</div>
     </div>
     <div class="profile-row">
       <div class="profile-key">Affiliations</div>
       <div class="profile-val">
         <ul>
-          <li>The Ironclad Consortium</li>
-          <li>The Blood Blessed</li>
-          <li>The OneTrue's contingency</li>
+          @for (affiliation of character()?.affiliations ?? [];
+            track character()?.affiliations?.indexOf(affiliation)) {
+          <li>{{ affiliation }}</li>
+          }
         </ul>
       </div>
     </div>
@@ -72,10 +73,10 @@
       <div class="profile-key">Traits</div>
       <div class="profile-val">
         <ul>
-          <li>Disciplined</li>
-          <li>Calculating</li>
-          <li>Ruthless Strategist</li>
-          <li>Unbreakable will</li>
+          @for (trait of character()?.traits ?? [];
+            track character()?.traits?.indexOf(trait)) {
+          <li>{{ trait }}</li>
+          }
         </ul>
       </div>
     </div>
@@ -84,52 +85,73 @@
 
   <section class="sheet-main">
     <p class="section-label">Character Info</p>
-    <h2 class="section-title">Miroslav Dion</h2>
+    <h2 class="section-title">{{ character()?.name }}</h2>
     <div class="divider"></div>
     <div class="sheet-bio">
-      <p>He was a soldier lifetimes ago, then he became a Blood Blessed Predator. He learned to control the hunger and
-        built a unique society of special people. Now he is a Legal Mogul, pulling the strings of Underground
-        syndicates. With his vast influence and wealth, he is the last contingency of the all-knowing One True against
-        incoming dark threats.</p>
+      <p>{{ character()?.bio }}</p>
     </div>
 
     <div class="sheet-gallery">
       <div class="gallery-row">
         <div class="gallery-slot">
-          <div class="gallery-frame"><img [src]="assetUrl(character()?.images?.portrait?.src || '')"
-              alt="Portrait of Miroslav Dion" loading="lazy"
-              onerror="this.style.display='none';this.parentNode.classList.add('is-empty');this.parentNode.insertAdjacentHTML('beforeend','&lt;span class=&quot;frame-empty&quot;&gt;Coming soon&lt;/span&gt;')"
-              style="cursor: zoom-in;"></div>
+          <div class="gallery-frame">
+            <img (click)="openLightbox(assetUrl(character()?.images?.portrait?.src || ''),
+            character()?.images?.portrait?.alt || 'Portrait')"
+              [src]="assetUrl(character()?.images?.portrait?.src || '')"
+              [attr.alt]="character()?.images?.portrait?.alt || 'Portrait'"
+              loading="lazy"
+              onerror="this.style.display='none';
+                this.parentNode.classList.add('is-empty');
+                this.parentNode.insertAdjacentHTML('beforeend','&lt;span class=&quot;frame-empty&quot;&gt;Coming soon&lt;/span&gt;')"
+              style="cursor: zoom-in;">
+          </div>
           <div class="gallery-label">Portrait</div>
         </div>
         <div class="gallery-slot">
-          <div class="gallery-frame"><img [src]="assetUrl(character()?.images?.item?.src || '')"
-              alt="Insignia of Miroslav Dion" loading="lazy"
-              onerror="this.style.display='none';this.parentNode.classList.add('is-empty');this.parentNode.insertAdjacentHTML('beforeend','&lt;span class=&quot;frame-empty&quot;&gt;Coming soon&lt;/span&gt;')"
-              style="cursor: zoom-in;"></div>
+          <div class="gallery-frame">
+            <img (click)="openLightbox(assetUrl(character()?.images?.item?.src || ''), 
+              character()?.images?.item?.alt || 'Item image')"
+              [src]="assetUrl(character()?.images?.item?.src || '')"
+              [attr.alt]="character()?.images?.item?.alt || 'Item image'"
+              loading="lazy"
+              onerror="this.style.display='none';
+              this.parentNode.classList.add('is-empty');
+              this.parentNode.insertAdjacentHTML('beforeend','&lt;span class=&quot;frame-empty&quot;&gt;Coming soon&lt;/span&gt;')"
+              style="cursor: zoom-in;">
+          </div>
           <div class="gallery-label">Insignia</div>
         </div>
       </div>
       <div class="gallery-slot gallery-slot--wide">
-        <div class="gallery-frame"><img [src]="assetUrl(character()?.images?.turnaround?.src || '')"
-            alt="Turnaround View of Miroslav Dion" loading="lazy"
-            onerror="this.style.display='none';this.parentNode.classList.add('is-empty');this.parentNode.insertAdjacentHTML('beforeend','&lt;span class=&quot;frame-empty&quot;&gt;Coming soon&lt;/span&gt;')"
-            style="cursor: zoom-in;"></div>
+        <div class="gallery-frame">
+          <img (click)="openLightbox(assetUrl(character()?.images?.turnaround?.src || ''), 
+            character()?.images?.turnaround?.alt || 'Turnaround view')" [src]="assetUrl(character()?.images?.turnaround?.src || '')"
+            [attr.alt]="character()?.images?.turnaround?.alt || 'Turnaround view'"
+            loading="lazy"
+            onerror="this.style.display='none';
+            this.parentNode.classList.add('is-empty');
+            this.parentNode.insertAdjacentHTML('beforeend','&lt;span class=&quot;frame-empty&quot;&gt;Coming soon&lt;/span&gt;')"
+            style="cursor: zoom-in;">
+        </div>
         <div class="gallery-label">Turnaround View</div>
       </div>
     </div>
 
-    <div class="sheet-fulllink"><a id="viewSheet" [attr.data-full]="assetUrl(character()?.images?.sheet?.src || '')"
-        [attr.data-alt]="'Miroslav Dion full character sheet'">View the full character sheet →</a></div>
+    <div class="sheet-fulllink">
+      <button id="viewSheet" (click)="openLightbox(assetUrl(character()?.images?.sheet?.src || ''), character()?.images?.sheet?.alt || (character()?.name + ' full character sheet'))" [attr.data-full]="assetUrl(character()?.images?.sheet?.src || '')"
+        [attr.data-alt]="character()?.images?.sheet?.alt || (character()?.name + ' full character sheet')">
+        View the full character sheet →
+      </button>
+    </div>
   </section>
 </div>
 }
 <nav class="sheet-crosslinks">
   <a href="../index.html#characters">← Back to all characters</a>
-  <a href="https://newport-maeve.fandom.com/wiki/Newport_Maeve_Chronicles_Wiki" target="_blank" rel="noopener">Fandom
-    Wiki →</a>
+  <a href="https://newport-maeve.fandom.com/wiki/Newport_Maeve_Chronicles_Wiki" target="_blank" rel="noopener">
+    Fandom Wiki →
+  </a>
   <a href="../index.html#listen">Listen to the Prequel →</a>
 </nav>
 
 <app-contacts></app-contacts>
-<app-light-house></app-light-house>
