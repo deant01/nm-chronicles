@@ -1,9 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { ContentService } from '../../../services/content.service';
+import { ScrollRevealDirective } from '../../../directives/scroll-reveal.directive';
 
 @Component({
   selector: 'app-quotations',
-  imports: [],
+  imports: [ScrollRevealDirective],
   templateUrl: './quotations.html',
   styleUrls: ['./quotations.scss'],
 })

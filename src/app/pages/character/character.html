@@ -1,4 +1,4 @@
-<header class="sheet-hero">
+<header class="sheet-hero fade-up-section" appScrollReveal="is-visible">
   <div class="sheet-hero-inner">
     @if (character()) {
     <p class="sheet-eyebrow">The Newport Maeve Chronicles</p>
@@ -20,7 +20,7 @@
   <app-loader message="Loading character details…"></app-loader>
 </div>
 } @else if (character()) {
-<div class="sheet-body">
+<div class="sheet-body fade-up-section" appScrollReveal="is-visible">
   <aside class="profile-block">
     <h2>Profile</h2>
     <div class="profile-row">
@@ -83,7 +83,7 @@
 
   </aside>
 
-  <section class="sheet-main">
+  <section class="sheet-main fade-up-section" appScrollReveal="is-visible">
     <p class="section-label">Character Info</p>
     <h2 class="section-title">{{ character()?.name }}</h2>
     <div class="divider"></div>
@@ -93,7 +93,7 @@
 
     <div class="sheet-gallery">
       <div class="gallery-row">
-        <div class="gallery-slot">
+        <div class="gallery-slot fade-up-section" appScrollReveal="is-visible">
           <div class="gallery-frame">
             <img (click)="openLightbox(assetUrl(character()?.images?.portrait?.src || ''),
             character()?.images?.portrait?.alt || 'Portrait')"
@@ -107,7 +107,7 @@
           </div>
           <div class="gallery-label">Portrait</div>
         </div>
-        <div class="gallery-slot">
+        <div class="gallery-slot fade-up-section" appScrollReveal="is-visible">
           <div class="gallery-frame">
             <img (click)="openLightbox(assetUrl(character()?.images?.item?.src || ''), 
               character()?.images?.item?.alt || 'Item image')"
@@ -122,7 +122,7 @@
           <div class="gallery-label">Insignia</div>
         </div>
       </div>
-      <div class="gallery-slot gallery-slot--wide">
+      <div class="gallery-slot gallery-slot--wide fade-up-section" appScrollReveal="is-visible">
         <div class="gallery-frame">
           <img (click)="openLightbox(assetUrl(character()?.images?.turnaround?.src || ''), 
             character()?.images?.turnaround?.alt || 'Turnaround view')" [src]="assetUrl(character()?.images?.turnaround?.src || '')"

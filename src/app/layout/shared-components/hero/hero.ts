@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { ScrollService } from '../../../services/scroll.service';
 import { ContentService } from '../../../services/content.service';
+import { ScrollRevealDirective } from '../../../directives/scroll-reveal.directive';
 
 @Component({
   selector: 'app-hero',
-  imports: [],
+  imports: [ScrollRevealDirective],
   templateUrl: './hero.html',
   styleUrls: ['./hero.scss'],
 })

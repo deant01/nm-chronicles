@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core';
 import { RouterLink } from "@angular/router";
 import { ContentService } from '../../../services/content.service';
 import { APP_ENVIRONMENT_CONFIG, buildAssetUrl } from '../../../config';
+import { ScrollRevealDirective } from '../../../directives/scroll-reveal.directive';
 
 @Component({
   selector: 'app-city',
-  imports: [RouterLink],
+  imports: [RouterLink, ScrollRevealDirective],
   templateUrl: './city.html',
   styleUrls: ['./city.scss'],
 })

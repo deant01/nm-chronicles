@@ -6,10 +6,11 @@ import { Loader } from '../../layout/shared-components/loader/loader';
 import { LoaderService } from '../../services/loader.service';
 import { LightHouseService } from '../../layout/shared-components/light-house/light-house.service';
 import { APP_ENVIRONMENT_CONFIG, buildAssetUrl } from '../../config';
+import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 
 @Component({
   selector: 'app-character',
-  imports: [Contacts, Loader],
+  imports: [Contacts, Loader, ScrollRevealDirective],
   templateUrl: './character.html',
   styleUrls: ['./character.scss'],
 })

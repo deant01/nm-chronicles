@@ -5,10 +5,11 @@ import { ContentService } from '../../../services/content.service';
 import { APP_ENVIRONMENT_CONFIG, buildAssetUrl } from '../../../config';
 import { Loader } from '../loader/loader';
 import { LoaderService } from '../../../services/loader.service';
+import { ScrollRevealDirective } from '../../../directives/scroll-reveal.directive';
 
 @Component({
   selector: 'app-characters',
-  imports: [RouterLink, Loader],
+  imports: [RouterLink, Loader, ScrollRevealDirective],
   templateUrl: './characters.html',
   styleUrls: ['./characters.scss'],
 })

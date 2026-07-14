@@ -17,10 +17,10 @@
         <div class="error-state">{{ error() }}</div>
       } @else {
         @for (character of characters(); track character.slug) {
-          <a class="char-card"
+          <a class="char-card fade-up-section" appScrollReveal="is-visible"
             [routerLink]="['/character', character.slug]"
             [state]="{ character }"
-            style="opacity: 1; transform: translateY(0px); transition: opacity 0.6s, transform 0.6s;">
+            [attr.aria-label]="'View details for ' + character.name">
             <div class="char-frame">
               <img [src]="assetUrl(character.images.portrait.src)"
                 alt="{{ character.images.portrait.alt }}"

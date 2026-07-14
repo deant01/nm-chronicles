@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { ContentService } from '../../../services/content.service';
 import { APP_ENVIRONMENT_CONFIG, buildAssetUrl } from '../../../config';
+import { ScrollRevealDirective } from '../../../directives/scroll-reveal.directive';
 
 @Component({
   selector: 'app-about',
-  imports: [],
+  imports: [ScrollRevealDirective],
   templateUrl: './about.html',
   styleUrls: ['./about.scss'],
 })
