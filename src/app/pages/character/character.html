@@ -151,6 +151,8 @@
     [url]="shareUrl()"
     [text]="`Explore ${characterName()} from the Newport Maeve Chronicles.`"
     [mediaUrl]="character()?.images?.portrait?.src || ''"
+    [mediaAlt]="character()?.images?.portrait?.alt || ''"
+    [pageDescription]="character()?.tagline || ''"
   ></app-share-on>
 </section>
 <nav class="sheet-crosslinks">

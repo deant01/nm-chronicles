@@ -17,6 +17,8 @@ export class ShareOn {
   @Input() url = '';
   @Input() text = '';
   @Input() mediaUrl = '';
+  @Input() mediaAlt = '';
+  @Input() pageDescription = '';
   @Input() isLightbox = false;
 
   readonly facebookIcon = this.iconSvg(siFacebook);
@@ -26,7 +28,7 @@ export class ShareOn {
 
   shareOn(platform: 'facebook' | 'x' | 'instagram' | 'pinterest'): void {
     const url = this.url || (typeof window !== 'undefined' ? window.location.href : '');
-    this.socialShareService.shareOn(platform, url, this.text, this.mediaUrl);
+    this.socialShareService.shareOn(platform, url, this.text, this.mediaUrl, this.mediaAlt, this.pageDescription);
   }
 
   private iconSvg(icon: { svg: string }): SafeHtml {

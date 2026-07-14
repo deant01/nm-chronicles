@@ -42,16 +42,18 @@ export class SocialShareService {
     platform: 'facebook' | 'x' | 'instagram' | 'pinterest',
     url: string,
     text: string,
-    mediaUrl?: string
+    mediaUrl?: string,
+    mediaAlt?: string,
+    pageDescription?: string
   ): void {
     const absoluteUrl = this.buildAbsoluteUrl(url);
-
+    console.log(absoluteUrl, text, mediaUrl, mediaAlt, pageDescription);
     switch (platform) {
       case 'x':
         this.openX(absoluteUrl, text);
         break;
       case 'facebook':
-        this.openFacebook(absoluteUrl);
+        this.openFacebook(absoluteUrl, mediaAlt || pageDescription || text);
         break;
       case 'instagram':
         this.openInstagram(absoluteUrl, text);
@@ -73,9 +75,16 @@ export class SocialShareService {
     this.openWindow(shareUrl);
   }
 
-  private openFacebook(url: string): void {
-    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+  private openFacebook(url: string, quote?: string): void {
+    const effectiveUrl = this.isImageUrl(url) && this.document?.location?.href && this.document.location.href !== url
+      ? this.document.location.href
+      : url;
+    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(effectiveUrl)}${quote ? `&quote=${encodeURIComponent(quote)}` : ''}`;
     this.openWindow(shareUrl);
+  }
+
+  private isImageUrl(url: string): boolean {
+    return /\.(jpe?g|png|gif|webp|avif|svg|bmp|ico|tiff?)(\?.*)?$/i.test(url);
   }
 
   private openWhatsApp(url: string, text: string): void {

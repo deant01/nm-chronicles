@@ -3,7 +3,7 @@
 
   <div class="lightbox-controls">
     <app-share-on [url]="src()" [text]="alt() || 'Share this image from the Newport Maeve Chronicles.'"
-      [mediaUrl]="src()" [isLightbox]="true"></app-share-on>
+      [mediaUrl]="src()" [mediaAlt]="alt()" [pageDescription]="alt()" [isLightbox]="true"></app-share-on>
     <button type="button" class="lightbox-close" aria-label="Close" (click)="close($event)">&times;</button>
   </div>
 

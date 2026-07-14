@@ -36,6 +36,7 @@ export class City {
   cityOverview = computed(() => this.city()?.overview ?? '');
   mapImageSrc = computed(() => this.city()?.mapImage?.src ?? '');
   mapImageAlt = computed(() => this.city()?.mapImage?.alt ?? '');
+  pageDescription = computed(() => this.city()?.overview ?? 'Discover this city from the Newport Maeve Chronicles.');
 
   assetUrl = (path: string) => buildAssetUrl(this.envConfig.assetBasePath, path);
 
