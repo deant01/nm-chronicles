@@ -48,18 +48,20 @@ export class SocialShareService {
     isLightbox?: boolean
   ): void {
     const absoluteUrl = this.buildAbsoluteUrl(url);
+    const shareText = pageDescription || mediaAlt || text;
+
     switch (platform) {
       case 'x':
-        this.openX(absoluteUrl, text);
+        this.openX(absoluteUrl, shareText);
         break;
       case 'facebook':
-        this.openFacebook(absoluteUrl, mediaAlt || pageDescription || text, isLightbox);
+        this.openFacebook(absoluteUrl, shareText, isLightbox);
         break;
       case 'instagram':
-        this.openInstagram(absoluteUrl, text);
+        this.openInstagram(absoluteUrl, shareText);
         break;
       case 'pinterest':
-        this.openPinterest(absoluteUrl, text, mediaUrl);
+        this.openPinterest(absoluteUrl, shareText, mediaUrl);
         break;
     }
   }

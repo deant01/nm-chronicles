@@ -14,6 +14,7 @@ export class LightHouse {
   readonly isOpen = this.lightHouseService.isOpen;
   readonly src = this.lightHouseService.src;
   readonly alt = this.lightHouseService.alt;
+  readonly description = this.lightHouseService.description;
 
   close(event?: Event): void {
     event?.stopPropagation();

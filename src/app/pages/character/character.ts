@@ -44,9 +44,9 @@ export class Character {
     this.loadCharacter();
   }
 
-  openLightbox(src: string, alt = ''): void {
+  openLightbox(src: string, alt = '', description = ''): void {
     console.log(`Character: openLightbox() called `);
-    this.lightHouseService.show(src, alt);
+    this.lightHouseService.show(src, alt, description);
   }
 
   navigateHome(event: MouseEvent, section: string): void {

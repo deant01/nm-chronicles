@@ -27,11 +27,23 @@ export class ShareOn {
   readonly pinterestIcon = this.iconSvg(siPinterest);
 
   shareOn(platform: 'facebook' | 'x' | 'instagram' | 'pinterest'): void {
-    const url = this.url || (typeof window !== 'undefined' ? window.location.href : '');
+    const defaultUrl = typeof window !== 'undefined' ? window.location.href : '';
+    let url = this.url || defaultUrl;
+
+    if (this.isLightbox) {
+      if (platform !== 'x' && this.mediaUrl) {
+        url = this.mediaUrl;
+      } else {
+        url = defaultUrl;
+      }
+    }
+
+    const text = this.text || this.pageDescription || this.mediaAlt || 'Share this from the Newport Maeve Chronicles.';
+
     this.socialShareService.shareOn(
       platform,
       url,
-      this.text,
+      text,
       this.mediaUrl,
       this.mediaAlt,
       this.pageDescription,

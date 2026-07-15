@@ -8,10 +8,12 @@ export class LightHouseService {
   readonly isOpen = signal(false);
   readonly src = signal('');
   readonly alt = signal('');
+  readonly description = signal('');
 
-  show(src: string, alt = ''): void {
+  show(src: string, alt = '', description = ''): void {
     this.src.set(src);
     this.alt.set(alt);
+    this.description.set(description);
     this.isOpen.set(true);
     if (this.document?.body) {
       this.document.body.style.overflow = 'hidden';

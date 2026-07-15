@@ -44,8 +44,8 @@ export class City {
     this.city.set(this.cityDataService.getCity());
   }
 
-  openLightbox(src: string, alt = ''): void {
-    this.lightHouseService.show(src, alt);
+  openLightbox(src: string, alt = '', description = ''): void {
+    this.lightHouseService.show(src, alt, description);
   }
 
   navigateHome(event: MouseEvent, section: string): void {
