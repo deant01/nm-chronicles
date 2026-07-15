@@ -28,7 +28,15 @@ export class ShareOn {
 
   shareOn(platform: 'facebook' | 'x' | 'instagram' | 'pinterest'): void {
     const url = this.url || (typeof window !== 'undefined' ? window.location.href : '');
-    this.socialShareService.shareOn(platform, url, this.text, this.mediaUrl, this.mediaAlt, this.pageDescription);
+    this.socialShareService.shareOn(
+      platform,
+      url,
+      this.text,
+      this.mediaUrl,
+      this.mediaAlt,
+      this.pageDescription,
+      this.isLightbox
+    );
   }
 
   private iconSvg(icon: { svg: string }): SafeHtml {

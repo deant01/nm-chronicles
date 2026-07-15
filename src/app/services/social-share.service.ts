@@ -44,16 +44,16 @@ export class SocialShareService {
     text: string,
     mediaUrl?: string,
     mediaAlt?: string,
-    pageDescription?: string
+    pageDescription?: string,
+    isLightbox?: boolean
   ): void {
     const absoluteUrl = this.buildAbsoluteUrl(url);
-    console.log(absoluteUrl, text, mediaUrl, mediaAlt, pageDescription);
     switch (platform) {
       case 'x':
         this.openX(absoluteUrl, text);
         break;
       case 'facebook':
-        this.openFacebook(absoluteUrl, mediaAlt || pageDescription || text);
+        this.openFacebook(absoluteUrl, mediaAlt || pageDescription || text, isLightbox);
         break;
       case 'instagram':
         this.openInstagram(absoluteUrl, text);
@@ -75,8 +75,9 @@ export class SocialShareService {
     this.openWindow(shareUrl);
   }
 
-  private openFacebook(url: string, quote?: string): void {
-    const effectiveUrl = this.isImageUrl(url) && this.document?.location?.href && this.document.location.href !== url
+  private openFacebook(url: string, quote?: string, isLightbox?: boolean): void {
+    const isImageShare = this.isImageUrl(url);
+    const effectiveUrl = isImageShare && !isLightbox && this.document?.location?.href && this.document.location.href !== url
       ? this.document.location.href
       : url;
     const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(effectiveUrl)}${quote ? `&quote=${encodeURIComponent(quote)}` : ''}`;
