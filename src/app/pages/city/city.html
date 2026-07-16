@@ -16,6 +16,7 @@
 
 <div class="city-fulllink">
   <button (click)="openLightbox(assetUrl(mapImageSrc()), mapImageAlt() || (cityName() + ' map'), pageDescription())">
+    {{pageContent.viewMapLabel}}
   </button>
 </div>
 

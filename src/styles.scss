@@ -16,6 +16,8 @@ body.loader-active {
   overflow: hidden;
   overscroll-behavior: none;
   touch-action: none;
+  scrollbar-gutter: stable;
+  padding-right: calc(100vw - 100%);
 }
 
 *, *::before, *::after {

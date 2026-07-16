@@ -17,7 +17,9 @@
       </div>
     </div>
     <div class="about-img-wrap">
-      <img [src]="assetUrl(content.image?.src || '')" [alt]="content.image?.alt || ''">
+      <img [src]="assetUrl(content.image?.src || '')" [alt]="content.image?.alt || ''" width="4829" height="3269" decoding="async"
+        [attr.srcset]="assetUrl(content.image?.src || '') + ' 1x'"
+        sizes="(max-width: 900px) 100vw, 387px">
     </div>
   </div>
 </section>

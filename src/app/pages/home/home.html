@@ -1,11 +1,46 @@
+@let about = aboutComponent();
+@let prequal = prequalComponent();
+@let characters = charactersComponent();
+@let quotations = quotationsComponent();
+@let city = cityComponent();
+@let author = authorComponent();
 <app-hero></app-hero>
 @if (!isDesktopFlag()) {
-<app-section-navigation></app-section-navigation>
+  <app-section-navigation></app-section-navigation>
 }
-<app-about></app-about>
-<app-prequal></app-prequal>
-<app-characters></app-characters>
-<app-quotations></app-quotations>
-<app-city></app-city>
-<app-author></app-author>
+@if (about) {
+  <ng-container [ngComponentOutlet]="about"></ng-container>
+} @else {
+  <div class="section-placeholder">Loading the story...</div>
+}
+
+@if (prequal) {
+  <ng-container [ngComponentOutlet]="prequal"></ng-container>
+} @else {
+  <div class="section-placeholder">Loading the trailer...</div>
+}
+
+@if (characters) {
+  <ng-container [ngComponentOutlet]="characters"></ng-container>
+} @else {
+  <div class="section-placeholder">Loading characters...</div>
+}
+@if (quotations) {
+  <ng-container [ngComponentOutlet]="quotations"></ng-container>
+} @else {
+  <div class="section-placeholder">Loading quotes...</div>
+}
+
+@if (city) {
+  <ng-container [ngComponentOutlet]="city"></ng-container>
+} @else {
+  <div class="section-placeholder">Loading the city map...</div>
+}
+
+@if (author) {
+  <ng-container [ngComponentOutlet]="author"></ng-container>
+} @else {
+  <div class="section-placeholder">Loading the author section...</div>
+}
+
 <app-contacts></app-contacts>

@@ -4,8 +4,8 @@ const nodeEnv = (globalThis as unknown as {
   process?: { env?: Record<string, string> };
 }).process?.env;
 
-const allowedHosts = nodeEnv?.ALLOWED_HOSTS
-  ? nodeEnv.ALLOWED_HOSTS.split(',').map((host) => host.trim()).filter(Boolean)
+const allowedHosts = nodeEnv?.['ALLOWED_HOSTS']
+  ? nodeEnv['ALLOWED_HOSTS'].split(',').map((host) => host.trim()).filter(Boolean)
   : [];
 
 const engine = new AngularAppEngine({

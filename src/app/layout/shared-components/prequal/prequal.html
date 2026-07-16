@@ -5,7 +5,14 @@
     <div class="ornament"><div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line"></div></div>
     <p class="section-lead">{{ content.lead }}</p>
     <div class="yt-embed">
-      <iframe data-site-link="youtube-embed" [src]="iframeSrc" [title]="content.iframeTitle" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+      @if (isPlayerReady()) {
+        <iframe data-site-link="youtube-embed" allow="autoplay" [src]="iframeSrc()" [title]="content.iframeTitle" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+      } @else {
+        <img [src]="assetUrl('assets/images/youtube-placeholder.webp')" [alt]="content.iframeTitle" width="100%" height="100%" loading="lazy">
+        <button type="button" class="yt-load-button" (click)="loadPlayer()" aria-label="Load trailer video">
+          <div class="yt-load-icon">▶</div>
+        </button>
+      }
     </div>
     <a [href]="content.linkHref" data-site-link="youtube" target="_blank" rel="noopener noreferrer" class="yt-link">{{ content.linkText }}</a>
   </div>

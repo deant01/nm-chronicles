@@ -27,7 +27,17 @@ export class App {
       effect(() => {
         document.body.classList.toggle('loader-active', this.loading());
       });
-      void this.analyticsService.init();
+
+      const globalWindow = window as Window & {
+        requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => void;
+      };
+
+      if (typeof globalWindow.requestIdleCallback === 'function') {
+        globalWindow.requestIdleCallback(() => void this.analyticsService.init(), { timeout: 3000 });
+      } else {
+        globalWindow.addEventListener('load', () => void this.analyticsService.init(), { once: true, passive: true });
+        setTimeout(() => void this.analyticsService.init(), 3000);
+      }
     }
 
     this.router.events.subscribe((event) => {
