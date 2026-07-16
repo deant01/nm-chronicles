@@ -50,6 +50,7 @@ export class SectionNavigation implements OnDestroy {
     }
 
     this.scrollTo(this.sections[index - 1].id);
+    this.currentSection.set(this.sections[index - 1].id);
   }
 
   scrollToNext(): void {
@@ -57,8 +58,8 @@ export class SectionNavigation implements OnDestroy {
     if (index >= this.sections.length - 1) {
       return;
     }
-
     this.scrollTo(this.sections[index + 1].id);
+    this.currentSection.set(this.sections[index + 1].id);
   }
 
   ngOnDestroy(): void {
