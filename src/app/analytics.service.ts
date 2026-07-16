@@ -92,8 +92,9 @@ export class AnalyticsService {
 
   private async loadConfig(): Promise<AnalyticsConfig | null> {
     try {
-      const base = document.querySelector('base')?.getAttribute('href') ?? '/';
-      const url = new URL('analytics-config.json', base).toString();
+      const baseHref = document.querySelector('base')?.getAttribute('href') ?? '/';
+      const baseUrl = `${window.location.origin}${baseHref}`;
+      const url = new URL('analytics-config.json', baseUrl).toString();
       const response = await fetch(url);
       if (!response.ok) {
         return null;

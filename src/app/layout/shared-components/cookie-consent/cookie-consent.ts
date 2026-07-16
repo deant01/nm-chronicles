@@ -13,9 +13,15 @@ export class CookieConsent {
 
   accept(): void {
     this.consentService.accept();
+    if (typeof window !== 'undefined') {
+      window.location.reload();
+    }
   }
 
   decline(): void {
     this.consentService.decline();
+    if (typeof window !== 'undefined') {
+      window.location.reload();
+    }
   }
 }
