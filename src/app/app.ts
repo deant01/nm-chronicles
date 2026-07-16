@@ -33,19 +33,19 @@ export class App {
       });
 
       effect(() => {
-        if (!this.analyticsAllowed()) {
-          return;
-        }
+        if (this.analyticsAllowed()) {
+          const globalWindow = window as Window & {
+            requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => void;
+          };
 
-        const globalWindow = window as Window & {
-          requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => void;
-        };
-
-        if (typeof globalWindow.requestIdleCallback === 'function') {
-          globalWindow.requestIdleCallback(() => void this.analyticsService.init(), { timeout: 3000 });
+          if (typeof globalWindow.requestIdleCallback === 'function') {
+            globalWindow.requestIdleCallback(() => void this.analyticsService.init(), { timeout: 3000 });
+          } else {
+            globalWindow.addEventListener('load', () => void this.analyticsService.init(), { once: true, passive: true });
+            setTimeout(() => void this.analyticsService.init(), 3000);
+          }
         } else {
-          globalWindow.addEventListener('load', () => void this.analyticsService.init(), { once: true, passive: true });
-          setTimeout(() => void this.analyticsService.init(), 3000);
+          this.analyticsService.shutdown();
         }
       });
     }
