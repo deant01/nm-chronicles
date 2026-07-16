@@ -12,6 +12,7 @@ export interface HomeContent {
     ctaTarget: string;
     scrollHint: string;
     scrollTarget: string;
+    heroImage: { src: string; alt: string };
   };
   about: {
     label: string;
