@@ -5,9 +5,7 @@
 @let city = cityComponent();
 @let author = authorComponent();
 <app-hero></app-hero>
-@if (!isDesktopFlag()) {
-  <app-section-navigation></app-section-navigation>
-}
+<app-section-navigation></app-section-navigation>
 @if (about) {
   <ng-container [ngComponentOutlet]="about"></ng-container>
 } @else {
