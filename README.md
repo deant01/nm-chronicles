@@ -1,55 +1,87 @@
 # nm-chronicles
 
-A standalone Angular application for the Newport Maeve Chronicles. This repository supports local development, static deployment to GitHub Pages, and server deployment to Cloudflare Workers using Angular SSR.
+A standalone Angular application for the Newport Maeve Chronicles.
 
-## Project architecture
+This repository supports:
+- local development with Angular CLI
+- static deployment to GitHub Pages
+- server-side rendering on Cloudflare Workers
 
-- Angular version: `22.x`
-- Standalone components and signals-based state management
-- Two deployment targets:
-  - GitHub Pages: static build with client-side routing and route metadata injection
-  - Cloudflare: server-rendered build with neutral platform worker and SSR
-- Runtime environment configuration is centralized in `src/app/config.ts`
-- Share metadata is augmented for prerendered GitHub Pages routes via `scripts/prerender-gh-pages.js`
+## What this project uses
+
+- Angular `22.x`
+- Standalone components and signal-based reactive state
+- `@angular/router` for page routing and navigation state
+- `@angular/ssr` for server-side rendering
+- GitHub Pages for static site deployment
+- Cloudflare Workers for SSR deployment
+- `IntersectionObserver`-based scroll reveal animations
+- lazy-loaded homepage sections for faster initial page load
+
+## Key features
+
+- Homepage with:
+  - hero section
+  - story/about section
+  - trailer/listen section
+  - characters preview
+  - quotes section
+  - interactive city map section
+  - author section
+  - contact section
+- Character pages with share links and return-to-home section scroll
+- City page with map and return-to-home section scroll
+- Home page navigation origin handling:
+  - when coming back from a character page, the home page scrolls to the characters section
+  - when coming back from the city page, the home page scrolls to the map section
+- Section navigation component that keeps the active section in sync with:
+  - mouse wheel scroll
+  - menu navigation
+  - programmatic navigation
+- Scroll reveal directive that checks element visibility on navigation and initial render
+- Environment-specific asset, canonical URL, and SEO behavior
+- SEO metadata generation for static routes and prerendered content
 
 ## Folder layout
 
-- `src/`: application source code
-  - `app/`: views, pages, layouts, services, directives
-  - `cloudflare/`: Cloudflare worker entrypoint for SSR
-  - `main.ts`: browser entrypoint
-  - `main.server.ts`: server entrypoint for SSR builds
-  - `server.ts`: example Node server entrypoint
-- `public/`: static assets copied into browser builds
-- `scripts/`: deployment and prerender helper scripts
-- `dist/`: build output folders
-- `wrangler.toml`: Cloudflare build configuration
-- `angular.json`: Angular build targets and environment-specific configurations
+- `src/`
+  - `app/` – components, pages, layouts, services, directives, and guards
+  - `cloudflare/` – worker entrypoint for SSR deployment
+  - `main.ts` – browser entrypoint
+  - `main.server.ts` – SSR entrypoint
+  - `server.ts` – Node server example
+- `public/` – static files copied to browser builds
+- `scripts/` – build, prerender, and SEO helper scripts
+- `dist/` – generated build artifacts
+- `wrangler.toml` – Cloudflare worker configuration
+- `angular.json` – Angular targets and build configurations
 
-## Environment-specific behavior
+## Runtime environment behavior
 
-The app supports three runtime environments using `APP_ENVIRONMENT_CONFIG` in `src/app/config.ts`:
+Runtime configuration is handled in `src/app/config.ts` and `APP_ENVIRONMENT_CONFIG`.
+The app detects the deployment environment and adjusts:
+
+- asset base paths
+- canonical URLs
+- link generation
+- share metadata
+
+Supported environments:
 
 - `local`
-  - Identified by `localhost` or `127.0.0.1`
-  - Uses asset base path `/`
-  - Canonical URL is the current local origin
+  - `localhost` or `127.0.0.1`
+  - asset base path: `/`
+  - canonical URL: current origin
 - `dev`
-  - Identified by a GitHub Pages path prefix `/nm-chronicles/` or `github.io` host
-  - Uses asset base path `/nm-chronicles/`
-  - Canonical URL is `${origin}/nm-chronicles/`
+  - GitHub Pages or `github.io` host
+  - asset base path: `/nm-chronicles/`
+  - canonical URL: `${origin}/nm-chronicles/`
 - `production`
-  - Identified by host ending in `newportmaeve.com`
-  - Uses asset base path `/`
-  - Canonical URL is `https://newportmaeve.com/`
+  - host ends with `newportmaeve.com`
+  - asset base path: `/`
+  - canonical URL: `https://newportmaeve.com/`
 
-This runtime config is used to:
-
-- build absolute asset URLs with `buildAssetUrl()`
-- resolve static images and JSON data paths across deploy targets
-- generate canonical URLs and share links
-
-## Build targets
+## Build and deployment
 
 ### Local development
 
@@ -57,7 +89,7 @@ This runtime config is used to:
 ng serve
 ```
 
-Open `http://localhost:4200/` to view the app locally.
+Open `http://localhost:4200/`.
 
 ### GitHub Pages static build
 
@@ -65,28 +97,30 @@ Open `http://localhost:4200/` to view the app locally.
 npm run build:github-pages
 ```
 
-- Builds the app with `githubPages` configuration from `angular.json`
-- Output path: `dist/github-pages`
+- Builds with `githubPages` config
+- Output: `dist/github-pages`
 - `baseHref`: `/nm-chronicles/`
 - `outputMode`: `static`
 - `ssr`: `false`
 
-After the static build, the `postbuild:github-pages` lifecycle script runs:
+After build, the `postbuild:github-pages` script runs:
 
 ```bash
 node scripts/prerender-gh-pages.js && node scripts/generate-seo-assets.js github-pages dist/github-pages/browser
 ```
 
-This workflow reads the generated `dist/github-pages/browser/index.html`, writes route-specific HTML for known pages, and generates GitHub Pages SEO assets:
+This script:
+- prerenders route HTML for known pages
+- injects Open Graph and Twitter metadata
+- writes canonical links
+- generates `robots.txt`
+- generates `sitemap.xml`
 
-- Open Graph metadata (`og:title`, `og:description`, `og:image`, `og:url`)
-- Twitter metadata
-- canonical links
-- `<title>` tags
-- `robots.txt`
-- `sitemap.xml`
+### Deploy GitHub Pages
 
-The route metadata definitions are centralized in `scripts/route-metadata.js`, and environment-specific SEO asset generation is handled by `scripts/generate-seo-assets.js`.
+```bash
+npm run deploy:github-pages
+```
 
 ### Cloudflare Workers SSR build
 
@@ -94,50 +128,37 @@ The route metadata definitions are centralized in `scripts/route-metadata.js`, a
 npm run build:cloudflare
 ```
 
-- Builds the app with `cloudflare` configuration from `angular.json`
-- Output path: `dist/nm-chronicles-cloudflare`
+- Builds with `cloudflare` config
+- Output: `dist/nm-chronicles-cloudflare`
 - `baseHref`: `/`
 - `outputMode`: `server`
 - SSR entrypoint: `src/cloudflare/worker.ts`
 
-Deployment is handled by Wrangler:
+Then deploy with:
 
 ```bash
 npm run deploy:cloudflare
 ```
 
-This publishes the worker using the `production` environment in `wrangler.toml`.
+### Useful commands
 
-The Cloudflare build also supports environment-specific SEO assets via the `postbuild:cloudflare` lifecycle script, which generates `robots.txt` and `sitemap.xml` inside `dist/nm-chronicles-cloudflare/browser`.
+- `npm run build:github-pages`
+- `npm run deploy:github-pages`
+- `npm run build:cloudflare`
+- `npm run deploy:cloudflare`
+- `ng test`
 
-## Deployment commands
+## SEO and prerendering
 
-- GitHub Pages build: `npm run build:github-pages`
-- GitHub Pages deploy: `npm run deploy:github-pages`
-- Cloudflare build: `npm run build:cloudflare`
-- Cloudflare deploy: `npm run deploy:cloudflare`
+- `src/app/app.routes.server.ts` defines routes for server prerendering
+- `scripts/route-metadata.js` holds route metadata definitions
+- `scripts/generate-seo-assets.js` creates metadata files for the generated build
+- Static GitHub Pages routes are prerendered and decorated with tailored share metadata
 
-## Cloudflare configuration
+## Notes
 
-`wrangler.toml` defines:
-
-- `main = "src/cloudflare/worker.ts"`
-- `compatibility_date`
-- `build.command = "npm run build:cloudflare"`
-- `build.upload.dir = "dist/nm-chronicles-cloudflare/browser"`
-
-The worker entrypoint uses `@angular/ssr` and `AngularAppEngine` to render requests.
-
-## Metadata and prerendering
-
-- `src/app/app.routes.server.ts` configures server prerendering for pages such as `character/:id`
-- The static GitHub Pages workflow generates a prerendered HTML page for each route defined in `scripts/route-metadata.js`
-- Page metadata is injected after build so each prerendered route has tailored social sharing metadata
-
-## Notes on robots and sitemap behavior
-
-- The project currently includes a root `robot.txt` file. If you need environment-specific robots rules, move or duplicate this file into `public/robots.txt` and customize the contents per deployment target.
-- The app should expose an XML sitemap at a deployment root such as `/sitemap.xml` for production indexing.
+- The project currently uses `robot.txt` at the repository root; move or duplicate it into `public/` if you need environment-specific robots files.
+- The generated sitemap should be served from the deployment root, e.g. `/sitemap.xml`.
 
 ## Testing
 
@@ -147,8 +168,8 @@ Run unit tests with:
 ng test
 ```
 
-## Useful references
+## References
 
 - Angular CLI docs: https://angular.dev/tools/cli
 - Angular SSR docs: https://angular.dev/guide/universal
-- Cloudflare Wrangler docs: https://developers.cloudflare.com/workers/
+- Cloudflare Workers docs: https://developers.cloudflare.com/workers/
