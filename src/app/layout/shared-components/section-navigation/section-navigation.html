@@ -1,15 +1,12 @@
 <div class="section-navigation">
-    <button type="button" class="nav-button prev" aria-label="{{ previousSection()?.label || 'Previous section' }}" title="{{ previousSection()?.label || 'Previous section' }}"
-        [disabled]="!canScrollPrevious()" (click)="scrollToPrevious()">
-      <span class="sr-only">Previous section</span>
-    </button>
-
-    <div class="section-indicator">
-        <span title="{{ currentLabel() }}"></span>
-    </div>
-
-    <button type="button" class="nav-button next"  aria-label="{{ nextSection()?.label || 'Next section' }}" title="{{ nextSection()?.label || 'Next section' }}" [disabled]="!canScrollNext()"
-        (click)="scrollToNext()">
-      <span class="sr-only">Next section</span>
-    </button>
+  <button
+    type="button"
+    class="scroll-toggle"
+    (click)="toggleScroll()"
+    [attr.aria-label]="buttonLabel()"
+    [title]="buttonLabel()"
+  >
+    <span class="scroll-toggle__text">{{ buttonLabel() }}</span>
+    <span class="scroll-toggle__icon" aria-hidden="true">{{ buttonIcon() }}</span>
+  </button>
 </div>

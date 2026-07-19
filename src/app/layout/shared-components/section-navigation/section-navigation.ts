@@ -29,12 +29,12 @@ export class SectionNavigation implements OnDestroy {
   private sectionObserver?: IntersectionObserver;
   private observedSections = new Set<string>();
   currentSection = signal(SECTIONS[0].id);
+  private hasSeenContact = signal(false);
+  showScrollUp = computed(() => this.hasSeenContact() && this.currentSection() !== 'main');
 
   sections = SECTIONS;
   currentSectionIndex = computed(() => this.sections.findIndex(section => section.id === this.currentSection()));
   currentLabel = computed(() => this.sections[this.currentSectionIndex()]?.label ?? '');
-  previousSection = computed(() => this.sections[this.currentSectionIndex() - 1]);
-  nextSection = computed(() => this.sections[this.currentSectionIndex() + 1]);
   canScrollPrevious = computed(() => this.currentSectionIndex() > 0);
   canScrollNext = computed(() => this.currentSectionIndex() < this.sections.length - 1);
 
@@ -49,6 +49,28 @@ export class SectionNavigation implements OnDestroy {
     }
   }
 
+  toggleScroll(): void {
+    if (this.showScrollUp()) {
+      this.scrollToPrevious();
+      return;
+    }
+
+    this.scrollToNext();
+  }
+
+  buttonIcon(): string {
+    return this.showScrollUp() ? '⤴' : '⤵';
+  }
+
+  buttonLabel(): string {
+    const index = this.currentSectionIndex();
+    const nextSection = this.showScrollUp()
+      ? this.sections[index - 1]
+      : this.sections[index + 1];
+
+    return 'Go to ' + (nextSection?.label ?? (this.showScrollUp() ? 'Hero' : 'Contact'));
+  }
+
   scrollToPrevious(): void {
     const index = this.currentSectionIndex();
     if (index <= 0) {
@@ -57,7 +79,6 @@ export class SectionNavigation implements OnDestroy {
 
     const targetId = this.sections[index - 1].id;
     this.scrollTo(targetId);
-    this.currentSection.set(targetId);
   }
 
   scrollToNext(): void {
@@ -68,7 +89,6 @@ export class SectionNavigation implements OnDestroy {
 
     const targetId = this.sections[index + 1].id;
     this.scrollTo(targetId);
-    this.currentSection.set(targetId);
   }
 
   ngOnDestroy(): void {
@@ -164,6 +184,7 @@ export class SectionNavigation implements OnDestroy {
     }
 
     this.currentSection.set(activeSection);
+    this.hasSeenContact.set(activeSection === 'connect' || this.hasSeenContact() && activeSection !== 'main');
   }
 
   private scrollTo(id: string): void {
