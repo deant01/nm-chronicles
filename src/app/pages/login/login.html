@@ -1,0 +1,27 @@
+<section class="login-shell">
+    <div class="login-panel">
+        <h1>Admin login</h1>
+
+        <form (submit)="onSubmit($event)">
+            <label>
+                <span>Username</span>
+                <input #usernameInput type="text" autocomplete="username" [value]="username()"
+                    (input)="username.set((usernameInput).value)" />
+            </label>
+
+            <label>
+                <span>Password</span>
+                <input type="password" autocomplete="current-password" [value]="password()"
+                    (input)="password.set(($event.target).value)" />
+            </label>
+
+            <button type="submit" class="login-button" [disabled]="loading()">
+                Sign in
+            </button>
+
+            @if (error()) {
+            <div class="login-error">{{ error() }}</div>
+            }
+        </form>
+    </div>
+</section>

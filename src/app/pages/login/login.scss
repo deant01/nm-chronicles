@@ -1,0 +1,75 @@
+.login-shell {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+    background: var(--bg-section);
+    color: var(--gold-light);
+}
+
+.login-panel {
+    font-family: 'Cinzel', serif;
+    width: min(30rem, 100%);
+    background: var(--bg-card);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 0.75rem rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--gold-dim);
+}
+
+.login-panel h1 {
+    margin: 0 0 1.5rem;
+    font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+}
+
+.login-panel label {
+    display: grid;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.login-panel span {
+    font-weight: 600;
+}
+
+.login-panel input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--gold-dim);
+    border-radius: 0.75rem;
+    background: var(--gold-light);
+
+}
+
+.login-button {
+    width: 100%;
+    padding: 0.95rem 1rem;
+    margin-top: 0.5rem;
+    border: none;
+    border-radius: 0.75rem;
+    border: 1px solid var(--gold-dim);
+    font-family: 'Cinzel', serif;
+    color: var(--gold);
+    font-weight: 700;
+    cursor: pointer;
+
+    &:hover {
+        background: var(--gold);
+        color: var(--gold-dim);
+    }
+}
+
+.login-button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.login-error {
+    font-family: 'Crimson Text', serif;
+    
+    margin-top: 1rem;
+    color: var(--crimson-bright);
+    background: var(--crimson);
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+}

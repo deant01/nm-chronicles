@@ -4,8 +4,7 @@ import { AdminApiService } from '../../services/admin-api.service';
 
 @Component({
   standalone: true,
-  selector: 'app-admin',
-  imports: [RouterLink],
+  selector: 'app-admin', 
   templateUrl: './admin.html',
   styleUrls: ['./admin.scss'],
 })

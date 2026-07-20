@@ -65,6 +65,42 @@ const readImageFiles = async (dir: string, rootDir = dir): Promise<string[]> => 
 const app = express();
 const angularApp = new AngularNodeAppEngine();
 
+const adminAccounts = new Map([
+  ['admin', 'ChangeMe123!'],
+  ['editor', 'EditorPass123!'],
+]);
+
+const isValidAdminCredentials = (authorization: string | undefined): boolean => {
+  if (!authorization?.startsWith('Basic ')) {
+    return false;
+  }
+
+  const encoded = authorization.slice('Basic '.length);
+  let decoded: string;
+
+  try {
+    decoded = Buffer.from(encoded, 'base64').toString('utf8');
+  } catch {
+    return false;
+  }
+
+  const [username, password] = decoded.split(':');
+  if (!username || !password) {
+    return false;
+  }
+
+  return adminAccounts.get(username) === password;
+};
+
+const adminAuthMiddleware = (req: express.Request, res: express.Response, next: express.NextFunction) => {
+  const authorization = req.headers['authorization'];
+  if (typeof authorization !== 'string' || !isValidAdminCredentials(authorization)) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  return next();
+};
+
 /**
  * Example Express Rest API endpoints can be defined here.
  * Uncomment and define endpoints as necessary.
@@ -81,6 +117,7 @@ const angularApp = new AngularNodeAppEngine();
  * Admin API for editing JSON content and uploading images.
  */
 app.use(express.json({ limit: '20mb' }));
+app.use('/api/admin', adminAuthMiddleware);
 
 app.get('/api/admin/data', (req, res) => {
   res.json(Array.from(allowedDataFiles));

@@ -1,5 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { APP_ENVIRONMENT_CONFIG, buildAssetUrl } from '../config';
+import { AuthService } from './auth.service';
 
 export interface ImageUploadPayload {
   path: string;
@@ -9,13 +10,21 @@ export interface ImageUploadPayload {
 @Injectable({ providedIn: 'root' })
 export class AdminApiService {
   private readonly envConfig = inject(APP_ENVIRONMENT_CONFIG);
+  private readonly authService = inject(AuthService);
 
   private buildAssetUrl(path: string): string {
     return buildAssetUrl(this.envConfig.assetBasePath, path);
   }
 
+  private get authHeaders(): Record<string, string> {
+    const authHeader = this.authService.getAuthorizationHeader();
+    return authHeader ? { Authorization: authHeader } : {};
+  }
+
   async getDataFileList(): Promise<string[]> {
-    const response = await fetch('/api/admin/data');
+    const response = await fetch('/api/admin/data', {
+      headers: this.authHeaders,
+    });
     if (!response.ok) {
       throw new Error('Failed to load data file list.');
     }
@@ -23,7 +32,9 @@ export class AdminApiService {
   }
 
   async getDataFile(fileName: string): Promise<string> {
-    const apiResponse = await fetch(`/api/admin/data/${encodeURIComponent(fileName)}`);
+    const apiResponse = await fetch(`/api/admin/data/${encodeURIComponent(fileName)}`, {
+      headers: this.authHeaders,
+    });
     if (apiResponse.ok) {
       return apiResponse.text();
     }
@@ -42,6 +53,7 @@ export class AdminApiService {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        ...this.authHeaders,
       },
       body: JSON.stringify({ content }),
     });
@@ -54,7 +66,9 @@ export class AdminApiService {
   }
 
   async getImages(): Promise<string[]> {
-    const response = await fetch('/api/admin/images');
+    const response = await fetch('/api/admin/images', {
+      headers: this.authHeaders,
+    });
     if (!response.ok) {
       throw new Error('Failed to load image list.');
     }
@@ -66,6 +80,7 @@ export class AdminApiService {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        ...this.authHeaders,
       },
       body: JSON.stringify(payload),
     });
