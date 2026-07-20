@@ -1,0 +1,75 @@
+<section class="admin-shell">
+  <header class="admin-header">
+    <h1>Admin panel</h1>
+    <a routerLink="/" class="admin-home-link">Return to site</a>
+  </header>
+
+  <div class="admin-grid">
+    <section class="admin-section admin-data">
+      <h2>Data files</h2>
+      <p>Pick a JSON file to edit and save directly back to the repository.</p>
+
+      <ul class="data-file-list">
+        @for (fileName of dataFiles(); track fileName) {
+            <li>
+              <button type="button" class="data-file-button" (click)="selectFile(fileName)">
+                {{fileName}}
+              </button>
+            </li>
+        }
+      </ul>
+
+      @if (hasSelectedFile()) {
+      <div class="editor-toolbar">
+        <span>Editing: {{selectedFile()}}</span>
+        <button type="button" class="save-button" (click)="saveFile()" [disabled]="loading()">Save file</button>
+      </div>
+      <textarea
+        class="json-editor"
+        rows="24"
+        [value]="fileContent()"
+        (input)="onFileContentInput($event)"
+        >{{fileContent()}}</textarea>
+      }
+    </section>
+
+    <section class="admin-section admin-images">
+      <h2>Images</h2>
+      <p>Upload a new image file under <strong>assets/images/</strong>.</p>
+
+      <label class="field-label">
+        Target path
+        <input type="text" placeholder="character-name/portrait.webp" bind:value={imagePath()} />
+      </label>
+
+      <label class="field-label">
+        Image file
+        <input type="file" accept="image/*" (change)="onImageFileChange($event)" />
+      </label>
+
+      @if (imagePreview()) {
+      <div class="image-preview">
+        <h3>Preview</h3>
+        <img [src]="imagePreview()" alt="Image preview" />
+      </div>
+      }
+
+      <button type="button" class="upload-button" (click)="uploadImage()" disabled={loading()}>Upload image</button>
+
+      <h3>Existing images</h3>
+      <div class="image-list">
+        @for (image of images(); track image) {
+        <div class="image-item">{{image}}</div>
+        }
+      </div>
+    </section>
+  </div>
+
+  @if (status()) {
+  <div class="admin-status success">{{status()}}</div>
+  }
+
+  @if (error()) {
+  <div class="admin-status error">{{error()}}</div>
+  }
+</section>
