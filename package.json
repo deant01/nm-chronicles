@@ -18,7 +18,7 @@
     "deploy:github-pages": "npx gh-pages -d dist/github-pages/browser -b gh-pages -r https://github.com/Brankovanov/nm-chronicles.git --dotfiles",
     "build:cloudflare": "ng build --configuration cloudflare",
     "postbuild:cloudflare": "node scripts/generate-seo-assets.js production dist/nm-chronicles-cloudflare/browser",
-    "deploy:cloudflare": "npx wrangler deploy --env production"
+    "deploy:cloudflare": "npx wrangler deploy --env \"\""
   },
   "private": true,
   "packageManager": "npm@11.13.0",

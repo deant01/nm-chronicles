@@ -1,9 +1,7 @@
-name = "nm-chronicles-production"
+name = "nm-chronicles"
 main = "dist/nm-chronicles-cloudflare/server/server.mjs"
 compatibility_date = "2026-07-02"
 account_id = "4eda8255125394a17293a14fc5cdeaac"
-
-[env.production]
 
 [build]
 command = "npm run build:cloudflare"
