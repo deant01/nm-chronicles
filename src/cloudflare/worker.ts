@@ -6,7 +6,7 @@ const nodeEnv = (globalThis as unknown as {
 
 const allowedHosts = nodeEnv?.['ALLOWED_HOSTS']
   ? nodeEnv['ALLOWED_HOSTS'].split(',').map((host) => host.trim()).filter(Boolean)
-  : [];
+  : ['*'];
 
 const engine = new AngularAppEngine({
   allowedHosts,
