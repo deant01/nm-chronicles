@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { closeLightHouseGuard } from './guards/close-lighthouse.guard';
+import { CharacterResolver } from './services/character-resolver.service';
 
 export const routes: Routes = [
   {
@@ -14,6 +15,9 @@ export const routes: Routes = [
         m => m.Character
       ),
     canDeactivate: [closeLightHouseGuard],
+    resolve: {
+      character: CharacterResolver,
+    },
   },
   {
     path: 'city',

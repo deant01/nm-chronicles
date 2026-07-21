@@ -1,5 +1,6 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Meta, Title } from '@angular/platform-browser';
 import { CharacterDataService, CharacterDTO } from '../../services/character-data.service';
 import { Contacts } from '../../layout/shared-components/contacts/contacts';
 import { Loader } from '../../layout/shared-components/loader/loader';
@@ -40,6 +41,9 @@ export class Character {
   characterTagline = computed(() => this.character()?.tagline ?? '');
   characterQuote = computed(() => this.character()?.quote ?? '');
 
+  private readonly titleService = inject(Title);
+  private readonly metaService = inject(Meta);
+
   constructor() {
     this.loadCharacter();
   }
@@ -59,9 +63,23 @@ export class Character {
     this.error.set(null);
     this.loaderService.show('Loading character details…');
 
+    const routeCharacter = this.route.snapshot.data['character'] as CharacterDTO | null | undefined;
+    if (routeCharacter !== undefined) {
+      if (routeCharacter) {
+        this.character.set(routeCharacter);
+        this.setCharacterMeta(routeCharacter);
+      } else {
+        this.error.set('Character not found.');
+      }
+      this.loading.set(false);
+      this.loaderService.hide();
+      return;
+    }
+
     const state = this.router.getCurrentNavigation()?.extras.state as { character?: CharacterDTO } | undefined;
     if (state?.character) {
       this.character.set(state.character);
+      this.setCharacterMeta(state.character);
       this.loading.set(false);
       this.loaderService.hide();
       return;
@@ -80,6 +98,7 @@ export class Character {
         this.error.set('Character not found.');
       } else {
         this.character.set(character);
+        this.setCharacterMeta(character);
       }
     } catch {
       this.error.set('Unable to load character details.');
@@ -87,5 +106,22 @@ export class Character {
       this.loading.set(false);
       this.loaderService.hide();
     }
+  }
+
+  private setCharacterMeta(character: CharacterDTO): void {
+    const title = `${character.name} | Newport Maeve Chronicles`;
+    const description = character.tagline || character.quote || 'Explore the characters of the Newport Maeve Chronicles.';
+    const image = this.assetUrl(character.images.portrait.src || 'assets/images/cover.webp');
+    const url = `${this.envConfig.canonicalUrl}character/${character.slug}`;
+
+    this.titleService.setTitle(title);
+    this.metaService.updateTag({ name: 'description', content: description });
+    this.metaService.updateTag({ property: 'og:title', content: title });
+    this.metaService.updateTag({ property: 'og:description', content: description });
+    this.metaService.updateTag({ property: 'og:image', content: image });
+    this.metaService.updateTag({ property: 'og:url', content: url });
+    this.metaService.updateTag({ name: 'twitter:title', content: title });
+    this.metaService.updateTag({ name: 'twitter:description', content: description });
+    this.metaService.updateTag({ name: 'twitter:image', content: image });
   }
 }
