@@ -5,7 +5,7 @@
       <h2 class="section-title">{{ content.titleLine1 }}<br>{{ content.titleLine2 }}</h2>
       <div class="divider"></div>
       @for (paragraph of content.paragraphs; track content.paragraphs.indexOf(paragraph)) {
-        <p>{{ paragraph }}</p>
+        <p [innerHTML]="paragraph"></p>
       }
       <div class="stat-grid">
         @for (stat of content.stats; track content.stats.indexOf(stat)) {

@@ -36,7 +36,7 @@ button {
 @font-face {
   font-family: 'Cinzel';
   src: local('Cinzel'),
-    url('./assets/fonts/Cinzel,Crimson_Text/Cinzel/Cinzel-VariableFont_wght.ttf') format('truetype');
+    url('./assets/fonts/Cinzel-CrimsonText/Cinzel/Cinzel-VariableFont_wght.ttf') format('truetype');
   font-weight: 100 900;
   font-style: normal;
   font-display: optional;
@@ -46,7 +46,7 @@ button {
 @font-face {
   font-family: 'Crimson Text';
   src: local('Crimson Text'), local('CrimsonText-Regular'),
-    url('./assets/fonts/Cinzel,Crimson_Text/Crimson_Text/CrimsonText-Regular.ttf') format('truetype');
+    url('./assets/fonts/Cinzel-CrimsonText/Crimson_Text/CrimsonText-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: optional;
@@ -55,7 +55,7 @@ button {
 @font-face {
   font-family: 'Crimson Text';
   src: local('Crimson Text Italic'), local('CrimsonText-Italic'),
-    url('./assets/fonts/Cinzel,Crimson_Text/Crimson_Text/CrimsonText-Italic.ttf') format('truetype');
+    url('./assets/fonts/Cinzel-CrimsonText/Crimson_Text/CrimsonText-Italic.ttf') format('truetype');
   font-weight: 400;
   font-style: italic;
   font-display: optional;
@@ -64,7 +64,7 @@ button {
 @font-face {
   font-family: 'Crimson Text';
   src: local('Crimson Text SemiBold'), local('CrimsonText-SemiBold'),
-    url('./assets/fonts/Cinzel,Crimson_Text/Crimson_Text/CrimsonText-SemiBold.ttf') format('truetype');
+    url('./assets/fonts/Cinzel-CrimsonText/Crimson_Text/CrimsonText-SemiBold.ttf') format('truetype');
   font-weight: 600;
   font-style: normal;
   font-display: optional;
@@ -73,7 +73,7 @@ button {
 @font-face {
   font-family: 'Crimson Text';
   src: local('Crimson Text SemiBold Italic'), local('CrimsonText-SemiBoldItalic'),
-    url('./assets/fonts/Cinzel,Crimson_Text/Crimson_Text/CrimsonText-SemiBoldItalic.ttf') format('truetype');
+    url('./assets/fonts/Cinzel-CrimsonText/Crimson_Text/CrimsonText-SemiBoldItalic.ttf') format('truetype');
   font-weight: 600;
   font-style: italic;
   font-display: optional;
@@ -82,7 +82,7 @@ button {
 @font-face {
   font-family: 'Crimson Text';
   src: local('Crimson Text Bold'), local('CrimsonText-Bold'),
-    url('./assets/fonts/Cinzel,Crimson_Text/Crimson_Text/CrimsonText-Bold.ttf') format('truetype');
+    url('./assets/fonts/Cinzel-CrimsonText/Crimson_Text/CrimsonText-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
   font-display: optional;
@@ -91,7 +91,7 @@ button {
 @font-face {
   font-family: 'Crimson Text';
   src: local('Crimson Text Bold Italic'), local('CrimsonText-BoldItalic'),
-    url('./assets/fonts/Cinzel,Crimson_Text/Crimson_Text/CrimsonText-BoldItalic.ttf') format('truetype');
+    url('./assets/fonts/Cinzel-CrimsonText/Crimson_Text/CrimsonText-BoldItalic.ttf') format('truetype');
   font-weight: 700;
   font-style: italic;
   font-display: optional;
@@ -367,4 +367,9 @@ section[id] {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+p em {
+  color: var(--gold);
+  font-style: italic;
 }

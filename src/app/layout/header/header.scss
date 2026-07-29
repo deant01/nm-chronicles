@@ -34,13 +34,15 @@ nav {
   font-size: 11px;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: var(--text-light);
+  color: var(--gold);
   text-decoration: none;
   transition: color 0.3s;
-  font-weight: 800;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 @media (hover: hover) {
+  .nav-links button:hover,
   .nav-links a:hover {
     color: var(--gold-light);
   }

@@ -18,10 +18,10 @@
     "titleLine1": "A City Built on Ambition.",
     "titleLine2": "A World Built on Blood.",
     "paragraphs": [
-      "The Newport Maeve Chronicles is a gothic noir fantasy series set in Elyssar, a world where vampires, angels, and demonic forces exist alongside a society of steam and ruthless progress.",
-      "Now old, dark forces are seeking vengeance and a thin crack to crawl through. They have adapted to the modern world and its refining, and, no longer content with flesh alone, they thrive on the extended boundaries of sin and grief.",
-      "The more a society perfects itself, the more elaborate its sins and sorrows grow — and on that very refinement, they feed. The demonic, unseen, slowly consumes the city, threatening to break the Confederacy itself.",
-      "Unless someone does something… unless someone acts as a last-line contingency."
+     "The Newport Maeve Chronicles is a gothic noir fantasy series set in Elyssar, a world where vampires, angels, and demonic forces exist alongside a society of <em>steam and ruthless progress</em>.",
+    "Now old, dark forces are seeking vengeance and a thin crack to crawl through. They have adapted to the modern world and its refining, and, no longer content with flesh alone, they thrive on the extended boundaries of <em>sin and grief</em>.",
+    "The more a society perfects itself, the more elaborate its sins and sorrows grow — and on that very refinement, <em>they feed</em>. The demonic, unseen, slowly consumes the city, threatening to break the Confederacy itself.",
+    "Unless someone does something… unless someone acts as a <em>last-line contingency</em>."
     ],
     "stats": [
       { "value": "9", "label": "Chapters in the Prequel" },
@@ -85,7 +85,7 @@
     "label": "The Author",
     "title": "Dean Jordanov",
     "imageAlt": "Dean Jordanov, creator of The Newport Maeve Chronicles",
-    "description": "Blue collar from Eastern Europe gone world-builder. One-man army handling all writing, illustrations and technical aspects with a lot of human power and various AI-assistance tools. All ideas, characters, settings, stories, twists and turns came from somewhere else entirely: from decades of living, working, and paying attention."
+    "description": "Blue collar from Eastern Europe gone <em>world-builder</em>. One-man army handling all writing, illustrations and technical aspects with a lot of human power and various <em>AI-assistance</em> tools. All ideas, characters, settings, stories, twists and turns came from somewhere else entirely: from decades of living, working, and paying attention."
   },
   "contacts": {
     "label": "Follow the Chronicles",

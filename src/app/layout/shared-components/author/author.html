@@ -8,7 +8,7 @@
       <h2 class="section-title">{{ content.title }}</h2>
       <div class="divider"></div>
       <img class="mobile-image" [src]="authorImageSrc" [alt]="content.imageAlt" width="10781" height="3289">
-      <p>{{ content.description }}</p>
+      <p [innerHTML]="content.description"></p>
     </div>
   </div>
 </section>
