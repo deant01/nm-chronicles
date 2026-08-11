@@ -41,6 +41,8 @@ const createSitemapXml = (baseUrl, routes) => {
 
 const createRobotsTxt = (baseUrl, rules) => `${rules}Sitemap: ${baseUrl}/sitemap.xml\n`;
 
+const createLlmsTxt = (baseUrl) => `# llms.txt\n\nUser-agent: *\nAllow: /\nSitemap: ${baseUrl}/sitemap.xml\n`;
+
 const run = () => {
   const [env, outputDir] = process.argv.slice(2);
 
@@ -61,8 +63,9 @@ const run = () => {
 
   fs.writeFileSync(path.join(outputPath, 'sitemap.xml'), sitemapXml, 'utf8');
   fs.writeFileSync(path.join(outputPath, 'robots.txt'), robotsTxt, 'utf8');
+  fs.writeFileSync(path.join(outputPath, 'llms.txt'), createLlmsTxt(baseUrl), 'utf8');
 
-  console.log(`Generated sitemap.xml and robots.txt for ${env ?? 'default'} in ${outputPath}`);
+  console.log(`Generated sitemap.xml, robots.txt, and llms.txt for ${env ?? 'default'} in ${outputPath}`);
 };
 
 run();
