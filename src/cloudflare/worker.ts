@@ -21,12 +21,18 @@ const isHtmlRequest = (request: Request): boolean =>
   new URL(request.url).pathname.endsWith('.html');
 
 const handler = async (request: Request): Promise<Response> => {
+  const url = new URL(request.url);
+  if (url.protocol === 'http:') {
+    url.protocol = 'https:';
+    return Response.redirect(url.toString(), 301);
+  }
+
   const response = await engine.handle(request);
   if (!response) {
     return new Response('Not Found', { status: 404 });
   }
 
-  const pathname = new URL(request.url).pathname;
+  const pathname = url.pathname;
   const headers = new Headers(response.headers);
 
   if (isLongTermAsset(pathname)) {

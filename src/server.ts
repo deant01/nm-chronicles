@@ -10,6 +10,20 @@ import { join } from 'node:path';
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
 const app = express();
+app.enable('trust proxy');
+
+app.use((req, res, next) => {
+  const shouldRedirect = process.env['NODE_ENV'] === 'production';
+  const forwardedProto = req.headers['x-forwarded-proto'];
+  const scheme = typeof forwardedProto === 'string' ? forwardedProto.split(',')[0].trim() : req.protocol;
+
+  if (shouldRedirect && scheme === 'http') {
+    return res.redirect(301, `https://${req.headers.host}${req.originalUrl}`);
+  }
+
+  return next();
+});
+
 const angularApp = new AngularNodeAppEngine();
 
 /**
