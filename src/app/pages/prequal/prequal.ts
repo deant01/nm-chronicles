@@ -17,6 +17,7 @@ interface PrequalPart {
 interface PrequalContent {
   title: string;
   description: string;
+  author: string;
   parts: PrequalPart[];
 }
 

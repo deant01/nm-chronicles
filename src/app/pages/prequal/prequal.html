@@ -1,10 +1,13 @@
 <main class="read-page">
   <header class="read-hero">
     <div class="read-hero-inner">
-      <p class="city-eyebrow">{{ content.label }}</p>
+      <p class="city-eyebrow">{{ story.description }}</p>
       <h1 class="city-name">{{ story.title }}</h1>
-      <p class="city-tagline">{{ story.description }}</p>
-      <a class="read-epub" [href]="content.linkHref" target="_blank" rel="noopener noreferrer">{{ content.linkText }}</a>
+      <p class="city-tagline">{{ story.author }}</p>
+      <div class="read-hero-actions">
+        <a class="read-epub" [href]="content.linkHref" target="_blank" rel="noopener noreferrer">{{ content.linkText }}</a>
+        <span class="read-epub-coming">EPUB EDITION · COMING SOON</span>
+      </div>
     </div>
   </header>
 
