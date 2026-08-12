@@ -1,7 +1,7 @@
-import { Component, computed, effect, inject, OnDestroy, signal } from '@angular/core';
+import { Component, computed, effect, inject, Input, OnChanges, OnDestroy, SimpleChanges, signal } from '@angular/core';
 import { ScrollService } from '../../../services/scroll.service';
 
-interface SectionEntry {
+export interface SectionEntry {
   id: string;
   label: string;
 }
@@ -22,17 +22,18 @@ const SECTIONS: SectionEntry[] = [
   templateUrl: './section-navigation.html',
   styleUrls: ['./section-navigation.scss'],
 })
-export class SectionNavigation implements OnDestroy {
+export class SectionNavigation implements OnChanges, OnDestroy {
+  @Input() sections: SectionEntry[] = SECTIONS;
+
   private readonly scrollService = inject(ScrollService);
   private readonly isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined';
 
   private sectionObserver?: IntersectionObserver;
   private observedSections = new Set<string>();
-  currentSection = signal(SECTIONS[0].id);
+  currentSection = signal(this.sections[0]?.id ?? SECTIONS[0].id);
   private hasSeenContact = signal(false);
-  showScrollUp = computed(() => this.hasSeenContact() && this.currentSection() !== 'main');
+  showScrollUp = computed(() => this.currentSection() !== this.sections[0]?.id);
 
-  sections = SECTIONS;
   currentSectionIndex = computed(() => this.sections.findIndex(section => section.id === this.currentSection()));
   currentLabel = computed(() => this.sections[this.currentSectionIndex()]?.label ?? '');
   canScrollPrevious = computed(() => this.currentSectionIndex() > 0);
@@ -89,6 +90,15 @@ export class SectionNavigation implements OnDestroy {
 
     const targetId = this.sections[index + 1].id;
     this.scrollTo(targetId);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['sections'] && this.sections.length > 0) {
+      this.currentSection.set(this.sections[0].id);
+      if (this.isBrowser) {
+        requestAnimationFrame(() => this.updateCurrentSectionFromViewport());
+      }
+    }
   }
 
   ngOnDestroy(): void {
@@ -184,7 +194,7 @@ export class SectionNavigation implements OnDestroy {
     }
 
     this.currentSection.set(activeSection);
-    this.hasSeenContact.set(activeSection === 'connect' || this.hasSeenContact() && activeSection !== 'main');
+    this.hasSeenContact.set(activeSection === 'connect' || (this.hasSeenContact() && activeSection !== 'main'));
   }
 
   private scrollTo(id: string): void {

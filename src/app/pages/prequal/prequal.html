@@ -1,0 +1,59 @@
+<main class="read-page">
+  <header class="read-hero">
+    <div class="read-hero-inner">
+      <p class="city-eyebrow">{{ content.label }}</p>
+      <h1 class="city-name">{{ story.title }}</h1>
+      <p class="city-tagline">{{ story.description }}</p>
+      <a class="read-epub" [href]="content.linkHref" target="_blank" rel="noopener noreferrer">{{ content.linkText }}</a>
+    </div>
+  </header>
+
+  <app-section-navigation [sections]="sectionEntries"></app-section-navigation>
+
+  <section class="read-main">
+    <aside class="read-sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-inner">
+        <p class="sidebar-label">Jump to chapter</p>
+        <ul class="chapter-links">
+          @for(part of story.parts; track part.id) {
+            <li>
+              <a
+                type="button"
+                class="chapter-link"
+                [class.active]="part.id === activeSection()"
+                (click)="scrollTo(part.id)"
+              >
+                {{ part.title }}
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+    </aside>
+
+    <article class="read-story" aria-label="{{ story.title }}">
+      @for(part of story.parts; track part.id) {
+        <section class="read-part" [id]="part.id">
+          <h2>{{ part.title }}</h2>
+          <div class="read-ornament" aria-hidden="true"><span></span><i></i><span></span></div>
+          <p><em>{{part.synopsis}}</em></p>
+          @for(paragraph of part.text; track paragraph) {
+            <p>{{ paragraph }}</p>
+          }
+        </section>
+      }
+    </article>
+
+    <section class="read-share">
+      <app-share-on
+        [url]="shareUrl()"
+        [text]="'Read the Newport Maeve Chronicles prequel'"
+        [mediaUrl]="''"
+        [mediaAlt]="'Newport Maeve Chronicles prequel preview'"
+        [pageDescription]="pageDescription"
+      ></app-share-on>
+    </section>
+  </section>
+
+  <app-contacts></app-contacts>
+</main>

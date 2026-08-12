@@ -14,6 +14,12 @@ const routeMetadata = [
     image: 'https://brankovanov.github.io/nm-chronicles/assets/images/map.webp',
   },
   {
+    path: '/prequal',
+    title: 'Miroslav Dion: A Glimpse of Centuries Past | Newport Maeve Chronicles',
+    description: 'Read the Newport Maeve Chronicles prequel and explore the early history of Miroslav Dion.',
+    image: 'https://brankovanov.github.io/nm-chronicles/assets/images/cover.webp',
+  },
+  {
     path: '/character/miroslav-dion',
     title: 'Miroslav Dion | Newport Maeve Chronicles',
     description:

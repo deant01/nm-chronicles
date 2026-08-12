@@ -26,6 +26,12 @@ export const routes: Routes = [
     canDeactivate: [closeLightHouseGuard],
   },
   {
+    path: 'prequal',
+    loadComponent: () =>
+      import('./pages/prequal/prequal').then(m => m.PrequalPage),
+    canDeactivate: [closeLightHouseGuard],
+  },
+  {
     path: '**',
     redirectTo: '',
   },
