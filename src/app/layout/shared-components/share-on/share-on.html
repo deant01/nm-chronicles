@@ -1,4 +1,4 @@
-<div [class.share-actions]="true" [ngClass]="{'lightbox-share-actions':  isLightbox}">
+<div [class.share-actions]="true" [ngClass]="{'lightbox-share-actions':  isLightbox, 'prequal-share-actions': isPrequal}">
   <button type="button" class="share-action" aria-label="Facebook" (click)="shareOn('facebook')">
     <span class="social-icon" [innerHTML]="facebookIcon"></span>
   </button>

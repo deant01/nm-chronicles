@@ -46,6 +46,10 @@
   gap: 0.45rem;
 }
 
+.prequal-share-actions {
+  bottom: 6rem;
+}
+
 @media (hover: hover) {
   .share-action:hover {
     background: var(--gold-light);

@@ -20,6 +20,7 @@ export class ShareOn {
   @Input() mediaAlt = '';
   @Input() pageDescription = '';
   @Input() isLightbox = false;
+  @Input() isPrequal = false;
 
   readonly facebookIcon = this.iconSvg(siFacebook);
   readonly xIcon = this.iconSvg(siX);
