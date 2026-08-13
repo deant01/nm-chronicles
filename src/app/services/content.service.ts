@@ -9,6 +9,7 @@ export interface HomeContent {
     titleLine2: string;
     subtitle: string;
     ctaLabel: string;
+    ctaPrequal: string;
     ctaTarget: string;
     scrollHint: string;
     scrollTarget: string;
@@ -31,6 +32,7 @@ export interface HomeContent {
     iframeTitle: string;
     linkText: string;
     linkHref: string;
+    ctaPrequal: string;
   };
   characters: {
     label: string;

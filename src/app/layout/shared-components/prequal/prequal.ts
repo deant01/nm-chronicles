@@ -3,10 +3,11 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ContentService } from '../../../services/content.service';
 import { ScrollRevealDirective } from '../../../directives/scroll-reveal.directive';
 import { APP_ENVIRONMENT_CONFIG, buildAssetUrl } from '../../../config';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-prequal',
-  imports: [ScrollRevealDirective],
+  imports: [ScrollRevealDirective, RouterLink],
   templateUrl: './prequal.html',
   styleUrls: ['./prequal.scss'],
 })

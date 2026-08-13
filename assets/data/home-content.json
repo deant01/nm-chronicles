@@ -5,6 +5,7 @@
     "titleLine2": "Chronicles",
     "subtitle": "An immortal. A city of steam & shadows. A debt come due.",
     "ctaLabel": "▶ Listen to the Prequel",
+    "ctaPrequal": "Read the Prequel",
     "ctaTarget": "listen",
     "scrollHint": "Scroll",
     "scrollTarget": "about",
@@ -42,7 +43,8 @@
     "iframeSrc": "https://www.youtube-nocookie.com/embed/gg5DZfQgrho",
     "iframeTitle": "Newport Maeve Chronicles Prequel Audiobook",
     "linkText": "Watch on YouTube →",
-    "linkHref": "https://youtu.be/gg5DZfQgrho?si=nwGPkU6QQ4LaS6uQ"
+    "linkHref": "https://youtu.be/gg5DZfQgrho?si=nwGPkU6QQ4LaS6uQ",
+    "ctaPrequal": "Read the Prequel"
   },
   "characters": {
     "label": "The Cast",

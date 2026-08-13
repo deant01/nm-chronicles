@@ -26,7 +26,7 @@ export const routes: Routes = [
     canDeactivate: [closeLightHouseGuard],
   },
   {
-    path: 'prequal',
+    path: 'prequel',
     loadComponent: () =>
       import('./pages/prequal/prequal').then(m => m.PrequalPage),
     canDeactivate: [closeLightHouseGuard],

@@ -64,16 +64,17 @@
   align-items: center;
   justify-content: center;
   padding: 0.9rem 1.35rem;
-  border: 1px solid rgba(var(--gold-rgb), 0.35);
+  border: 1px solid var(--gold);
   color: var(--gold);
   text-decoration: none;
   border-radius: 999px;
   font-weight: 600;
 }
 
-.read-epub:hover,
-.read-epub:focus-visible {
-  background: rgba(var(--gold-rgb), 0.08);
+.btn:hover,
+.btn:focus-visible {
+  background: var(--gold-dim);
+  color: var(--text-light);
 }
 
 .read-epub-coming {
@@ -245,17 +246,19 @@
 
 .read-share {
   padding: 2rem 0;
-}@media (max-width: 1024px) {
-    .read-sidebar {
-        position: relative;
-        top: auto;
-        max-height: none;
-        padding: 1rem;
-    }
 }
 
 @media (max-width: 1024px) {
-   .read-sidebar {
+  .read-sidebar {
+    position: relative;
+    top: auto;
+    max-height: none;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .read-sidebar {
     position: relative;
     top: auto;
     max-height: none;
@@ -299,12 +302,14 @@
   .read-main {
     gap: 2rem;
   }
-    .read-sidebar {
-        position: relative;
-        top: auto;
-        max-height: none;
-        padding: 1rem;
-    }
+
+  .read-sidebar {
+    position: relative;
+    top: auto;
+    max-height: none;
+    padding: 1rem;
+  }
+
   .chapter-links a {
     padding: 0.75rem 0.9rem;
     font-size: 0.95rem;

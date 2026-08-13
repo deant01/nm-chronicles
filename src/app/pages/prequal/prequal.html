@@ -5,13 +5,13 @@
       <h1 class="city-name">{{ story.title }}</h1>
       <p class="city-tagline">{{ story.author }}</p>
       <div class="read-hero-actions">
-        <a class="read-epub" [href]="content.linkHref" target="_blank" rel="noopener noreferrer">{{ content.linkText }}</a>
-        <span class="read-epub-coming">EPUB EDITION · COMING SOON</span>
+        <span class="read-epub">EPUB EDITION · COMING SOON</span>
+        <a class="read-epub btn" [href]="content.linkHref" target="_blank" rel="noopener noreferrer">{{ content.linkText }}</a>
       </div>
     </div>
   </header>
 
-  <app-section-navigation [sections]="sectionEntries"></app-section-navigation>
+  <app-section-navigation [sections]="sectionEntries" [isPrequal]="true"></app-section-navigation>
 
   <section class="read-main">
     <aside class="read-sidebar" aria-label="Chapter navigation">

@@ -3,10 +3,11 @@ import { ScrollService } from '../../../services/scroll.service';
 import { ContentService } from '../../../services/content.service';
 import { APP_ENVIRONMENT_CONFIG, buildAssetUrl } from '../../../config';
 import { ScrollRevealDirective } from '../../../directives/scroll-reveal.directive';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-hero',
-  imports: [ScrollRevealDirective],
+  imports: [ScrollRevealDirective, RouterLink],
   templateUrl: './hero.html',
   styleUrls: ['./hero.scss'],
 })

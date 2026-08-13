@@ -18,7 +18,7 @@ export class Header {
   private viewChangeService = inject(ViewChangeService);
   private contentService = inject(ContentService);
   header = this.contentService.getTemplateContent().header;
-  isPage: Signal<boolean> = computed(() => (this.currentUrl()?.includes('city') || this.currentUrl()?.includes('character') || this.currentUrl()?.includes('prequal')) ?? false);
+  isPage: Signal<boolean> = computed(() => (this.currentUrl()?.includes('city') || this.currentUrl()?.includes('character') || this.currentUrl()?.includes('prequel')) ?? false);
   homeBackSection = computed(() => {
     const url = this.currentUrl() ?? '';
     if (url.includes('/city')) {

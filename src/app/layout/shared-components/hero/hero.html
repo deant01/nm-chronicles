@@ -8,6 +8,7 @@
         <h1 class="hero-title">{{ content.titleLine1 }}<br>{{ content.titleLine2 }}</h1>
         <p class="hero-subtitle">{{ content.subtitle }}</p>
         <button class="hero-cta" (click)="scrollTo(content.ctaTarget)">{{ content.ctaLabel }}</button>
+        <a class="hero-cta" [routerLink]="['/prequel']">{{ content.ctaPrequal }}</a>
     </div>
     <button class="scroll-hint" (click)="scrollTo(content.scrollTarget)">
         <span>{{ content.scrollHint }}</span>

@@ -38,8 +38,12 @@ export class PrequalPage implements AfterViewInit, OnDestroy {
 
   readonly content = this.contentService.getHomeContent().prequal;
   readonly story = prequalContent as PrequalContent;
-  readonly sectionEntries = this.story.parts.map(part => ({ id: part.id, label: part.title }));
-  readonly activeSection: WritableSignal<string | null> = signal(null);
+  readonly sectionEntries = [
+    { id: 'main', label: 'Hero' },
+    ...this.story.parts.map(part => ({ id: part.id, label: part.title })),
+    { id: 'connect', label: 'Connect' },
+  ];
+  readonly activeSection: WritableSignal<string | null> = signal('main');
   readonly shareUrl = computed(
     () =>
       typeof window !== 'undefined'

@@ -8,8 +8,8 @@ export interface SectionEntry {
 
 const SECTIONS: SectionEntry[] = [
   { id: 'main', label: 'Hero' },
-  { id: 'about', label: 'About' },
-  { id: 'listen', label: 'Listen' },
+  { id: 'about', label: 'Series' },
+  { id: 'listen', label: 'Prequel' },
   { id: 'characters', label: 'Characters' },
   { id: 'quotes', label: 'Quotes' },
   { id: 'map', label: 'Map' },
@@ -24,6 +24,7 @@ const SECTIONS: SectionEntry[] = [
 })
 export class SectionNavigation implements OnChanges, OnDestroy {
   @Input() sections: SectionEntry[] = SECTIONS;
+  @Input() isPrequal = false;
 
   private readonly scrollService = inject(ScrollService);
   private readonly isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined';
