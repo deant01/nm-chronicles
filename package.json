@@ -1,10 +1,10 @@
 {
   "name": "nm-chronicles",
   "version": "0.0.0",
-  "homepage": "https://brankovanov.github.io/nm-chronicles",
+  "homepage": "https://deant01.github.io/nm-chronicles",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Brankovanov/nm-chronicles.git"
+    "url": "https://github.com/deant01/nm-chronicles.git"
   },
   "scripts": {
     "ng": "ng",
@@ -15,7 +15,7 @@
     "serve:ssr:nm-chronicles": "node dist/nm-chronicles/server/server.mjs",
     "build:github-pages": "ng build --configuration githubPages",
     "postbuild:github-pages": "node scripts/prerender-gh-pages.js && node scripts/generate-seo-assets.js github-pages dist/github-pages/browser",
-    "deploy:github-pages": "npx gh-pages -d dist/github-pages/browser -b gh-pages -r https://github.com/Brankovanov/nm-chronicles.git --dotfiles",
+    "deploy:github-pages": "npx gh-pages -d dist/github-pages/browser -b gh-pages -r https://github.com/deant01/nm-chronicles.git --dotfiles",
     "build:cloudflare": "ng build --configuration cloudflare",
     "postbuild:cloudflare": "node scripts/generate-seo-assets.js production dist/nm-chronicles-cloudflare/browser",
     "deploy:cloudflare": "npx wrangler deploy --env \"\""
