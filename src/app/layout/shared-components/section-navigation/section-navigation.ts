@@ -1,7 +1,7 @@
 import { Component, computed, effect, inject, Input, OnChanges, OnDestroy, SimpleChanges, signal } from '@angular/core';
 import { ScrollService } from '../../../services/scroll.service';
 
-export interface SectionEntry {
+interface SectionEntry {
   id: string;
   label: string;
 }
@@ -17,24 +17,37 @@ const SECTIONS: SectionEntry[] = [
   { id: 'connect', label: 'Connect' },
 ];
 
+const PREQUEL_SECTIONS: SectionEntry[] = [
+  { id: 'main', label: 'Hero' },
+  { id: 'part-1', label: 'Part 1' },
+  { id: 'part-2', label: 'Part 2' },
+  { id: 'part-3', label: 'Part 3' },
+  { id: 'part-4', label: 'Part 4' },
+  { id: 'part-5', label: 'Part 5' },
+  { id: 'part-6', label: 'Part 6' },
+  { id: 'part-7', label: 'Part 7' },
+  { id: 'part-8', label: 'Part 8' },
+  { id: 'part-9', label: 'Part 9' },
+  { id: 'connect', label: 'Connect' },
+];
 @Component({
   selector: 'app-section-navigation',
   templateUrl: './section-navigation.html',
   styleUrls: ['./section-navigation.scss'],
 })
 export class SectionNavigation implements OnChanges, OnDestroy {
-  @Input() sections: SectionEntry[] = SECTIONS;
-  @Input() isPrequal = false;
+  @Input() isPrequel = false;
+  sections = SECTIONS;
 
   private readonly scrollService = inject(ScrollService);
   private readonly isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined';
 
   private sectionObserver?: IntersectionObserver;
   private observedSections = new Set<string>();
-  currentSection = signal(this.sections[0]?.id ?? SECTIONS[0].id);
+  currentSection = signal(SECTIONS[0].id);
   private hasSeenContact = signal(false);
-  showScrollUp = computed(() => this.currentSection() !== this.sections[0]?.id);
-
+  showScrollUp = computed(() => this.hasSeenContact() && this.currentSection() !== 'main');
+ 
   currentSectionIndex = computed(() => this.sections.findIndex(section => section.id === this.currentSection()));
   currentLabel = computed(() => this.sections[this.currentSectionIndex()]?.label ?? '');
   canScrollPrevious = computed(() => this.currentSectionIndex() > 0);
@@ -50,7 +63,6 @@ export class SectionNavigation implements OnChanges, OnDestroy {
       });
     }
   }
-
   toggleScroll(): void {
     if (this.showScrollUp()) {
       this.scrollToPrevious();
@@ -94,10 +106,17 @@ export class SectionNavigation implements OnChanges, OnDestroy {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['sections'] && this.sections.length > 0) {
+    if (changes['isPrequel']) {
+      this.sections = this.isPrequel ? PREQUEL_SECTIONS : SECTIONS;
       this.currentSection.set(this.sections[0].id);
+
       if (this.isBrowser) {
-        requestAnimationFrame(() => this.updateCurrentSectionFromViewport());
+        this.sectionObserver?.disconnect();
+        this.observedSections.clear();
+        requestAnimationFrame(() => {
+          this.createSectionObserver();
+          this.checkForPendingSections();
+        });
       }
     }
   }
@@ -195,7 +214,7 @@ export class SectionNavigation implements OnChanges, OnDestroy {
     }
 
     this.currentSection.set(activeSection);
-    this.hasSeenContact.set(activeSection === 'connect' || (this.hasSeenContact() && activeSection !== 'main'));
+    this.hasSeenContact.set(activeSection === 'connect' || this.hasSeenContact() && activeSection !== 'main');
   }
 
   private scrollTo(id: string): void {
