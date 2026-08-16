@@ -78,6 +78,17 @@
               "extractLicenses": true,
               "outputHashing": "all"
             },
+            "githubPagesDevelopment": {
+              "baseHref": "/nm-chronicles/",
+              "outputPath": "dist/github-pages",
+              "outputMode": "static",
+              "ssr": false,
+              "server": false,
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "outputHashing": "all"
+            },
             "cloudflare": {
               "baseHref": "/",
               "outputPath": "dist/nm-chronicles-cloudflare",
