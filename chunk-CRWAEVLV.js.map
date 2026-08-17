@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/services/scroll.service.ts"],
+  "sourcesContent": ["import { Injectable } from '@angular/core';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class ScrollService {\r\n  scrollTo(id: string, options: ScrollIntoViewOptions = { behavior: 'smooth', block: 'start' }): void {\r\n    document.getElementById(id)?.scrollIntoView(options);\r\n  }\r\n}\r\n"],
+  "mappings": ";;;;;;;AAKM,IAAO,gBAAP,MAAO,eAAa;EACxB,SAAS,IAAY,UAAiC,EAAE,UAAU,UAAU,OAAO,QAAO,GAAE;AAC1F,aAAS,eAAe,EAAE,GAAG,eAAe,OAAO;EACrD;;qCAHW,gBAAa;EAAA;4EAAb,gBAAa,SAAb,eAAa,WAAA,YAFZ,OAAM,CAAA;;;sEAEP,eAAa,CAAA;UAHzB;WAAW;MACV,YAAY;KACb;;;",
+  "names": []
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/layout/shared-components/author/author.scss"],
+  "sourcesContent": [".author-section {\r\n  background: var(--bg-section);\r\n}\r\n\r\n.author-grid {\r\n  display: grid;\r\n  grid-template-columns: 1fr 1fr;\r\n  gap: 5rem;\r\n  align-items: top;\r\n  max-width: 1200px;\r\n  margin: 0 auto;\r\n}\r\n\r\n\r\nimg {\r\n  width: 100%;\r\n  height: auto;\r\n  max-height: 90vh;\r\n  object-fit: cover;\r\n  object-position: center;\r\n\r\n  &.desktop-image {\r\n    display: block;\r\n  }\r\n\r\n  &.mobile-image {\r\n    display: none;\r\n  }\r\n}\r\n\r\n.author-text p {\r\n  color: var(--text);\r\n  margin-bottom: 1.2rem;\r\n  font-size: 1.05rem;\r\n}\r\n\r\n.author-text p em {\r\n  color: var(--gold);\r\n  font-style: italic;\r\n}\r\n\r\n@media (max-width: 900px) {\r\n  .author-grid {\r\n    grid-template-columns: 1fr;\r\n    gap: 2rem;\r\n  }\r\n\r\n  img {\r\n    &.desktop-image {\r\n      display: none;\r\n    }\r\n\r\n    &.mobile-image {\r\n      display: block;\r\n      margin: 1.5rem 0;\r\n    }\r\n  }\r\n}"],
+  "mappings": ";AAAA,CAAA;AACE,cAAA,IAAA;;AAGF,CAAA;AACE,WAAA;AACA,yBAAA,IAAA;AACA,OAAA;AACA,eAAA;AACA,aAAA;AACA,UAAA,EAAA;;AAIF;AACE,SAAA;AACA,UAAA;AACA,cAAA;AACA,cAAA;AACA,mBAAA;;AAEA,GAAA,CAAA;AACE,WAAA;;AAGF,GAAA,CAAA;AACE,WAAA;;AAIJ,CAAA,YAAA;AACE,SAAA,IAAA;AACA,iBAAA;AACA,aAAA;;AAGF,CANA,YAMA,EAAA;AACE,SAAA,IAAA;AACA,cAAA;;AAGF,QAAA,WAAA;AACE,GAtCF;AAuCI,2BAAA;AACA,SAAA;;AAIA,KAAA,CA3BF;AA4BI,aAAA;;AAGF,KAAA,CA3BF;AA4BI,aAAA;AACA,YAAA,OAAA;;;",
+  "names": []
+}

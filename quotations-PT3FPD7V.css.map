@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/layout/shared-components/quotations/quotations.scss"],
+  "sourcesContent": [".quotes-section {\r\n  background: var(--bg-deep);\r\n  text-align: center;\r\n}\r\n\r\n.quotes-inner {\r\n  max-width: 820px;\r\n  margin: 0 auto;\r\n}\r\n\r\n.pull-quote {\r\n  margin: 2.5rem 0;\r\n  position: relative;\r\n  padding: 0 1rem;\r\n}\r\n\r\n.pull-quote p {\r\n  font-family: 'Crimson Text', serif;\r\n  font-style: italic;\r\n  font-size: clamp(1.1rem, 1.8vw, 1.4rem);\r\n  color: var(--text);\r\n  line-height: 1.6;\r\n}\r\n\r\n.pull-quote cite {\r\n  display: block;\r\n  margin-top: 0.85rem;\r\n  font-family: 'Cinzel', serif;\r\n  font-style: normal;\r\n  font-size: 11px;\r\n  letter-spacing: 3px;\r\n  text-transform: uppercase;\r\n  color: var(--gold-light);\r\n}"],
+  "mappings": ";AAAA,CAAA;AACE,cAAA,IAAA;AACA,cAAA;;AAGF,CAAA;AACE,aAAA;AACA,UAAA,EAAA;;AAGF,CAAA;AACE,UAAA,OAAA;AACA,YAAA;AACA,WAAA,EAAA;;AAGF,CANA,WAMA;AACE,eAAA,cAAA,EAAA;AACA,cAAA;AACA,aAAA,MAAA,MAAA,EAAA,KAAA,EAAA;AACA,SAAA,IAAA;AACA,eAAA;;AAGF,CAdA,WAcA;AACE,WAAA;AACA,cAAA;AACA,eAAA,QAAA,EAAA;AACA,cAAA;AACA,aAAA;AACA,kBAAA;AACA,kBAAA;AACA,SAAA,IAAA;;",
+  "names": []
+}

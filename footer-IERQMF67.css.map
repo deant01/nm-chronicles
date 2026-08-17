@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/layout/footer/footer.scss"],
+  "sourcesContent": ["footer {\r\n  border-top: 1px solid var(--border);\r\n  padding: 3rem 4rem;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  min-height: 12rem;\r\n  background: #050505;\r\n}\r\n\r\n.footer-logo {\r\n  font-family: 'Cinzel', serif;\r\n  font-size: 16px;\r\n  color: #E8C97A;\r\n  letter-spacing: 3px;\r\n}\r\n\r\n.footer-sub {\r\n  font-size: 0.8rem;\r\n  color: #D4C9B0;\r\n  letter-spacing: 2px;\r\n  margin-top: 4px;\r\n}\r\n\r\n.footer-credit {\r\n  font-size: 0.82rem;\r\n  color: #D4C9B0;\r\n  text-align: right;\r\n\r\n  a {\r\n    text-decoration: none;\r\n  }\r\n}\r\n\r\n.footer-copy,\r\n.footer-development {\r\n  display: block;\r\n  font-size: 0.75rem;\r\n  color: #BDB0A0;\r\n}\r\n\r\n.footer-development {\r\n  margin-top: 0.25rem;\r\n}\r\n\r\n@media (max-width: 900px) {\r\n  footer {\r\n    flex-direction: column;\r\n    gap: 1rem;\r\n    text-align: center;\r\n  }\r\n\r\n  .footer-credit {\r\n    text-align: center;\r\n  }\r\n}"],
+  "mappings": ";AAAA;AACE,cAAA,IAAA,MAAA,IAAA;AACA,WAAA,KAAA;AACA,WAAA;AACA,mBAAA;AACA,eAAA;AACA,cAAA;AACA,cAAA;;AAGF,CAAA;AACE,eAAA,QAAA,EAAA;AACA,aAAA;AACA,SAAA;AACA,kBAAA;;AAGF,CAAA;AACE,aAAA;AACA,SAAA;AACA,kBAAA;AACA,cAAA;;AAGF,CAAA;AACE,aAAA;AACA,SAAA;AACA,cAAA;;AAEA,CALF,cAKE;AACE,mBAAA;;AAIJ,CAAA;AAAA,CAAA;AAEE,WAAA;AACA,aAAA;AACA,SAAA;;AAGF,CAPA;AAQE,cAAA;;AAGF,QAAA,WAAA;AACE;AACE,oBAAA;AACA,SAAA;AACA,gBAAA;;AAGF,GA5BF;AA6BI,gBAAA;;;",
+  "names": []
+}
